@@ -1,0 +1,571 @@
+(TL) PS D:\PYCODE\Time-Series-Library-main\NewlyMAPTST\AMPTST> bash .\scripts\AMPTST\main\AMPTST.sh
+Using GPU
+Args in experiment:
+Basic Config
+  Task Name:          long_term_forecast  Is Training:        1
+  Model ID:           h57                 Model:              AMPTST
+
+Data Loader
+  Data:               custom              Root Path:          ./dataset/mydata_v1/
+  Data Path:          h57.csv             Features:           MS
+  Target:             OT                  Freq:               h
+  Checkpoints:        ./checkpoints/
+
+Forecasting Task
+  Seq Len:            168                 Label Len:          0
+  Pred Len:           24                  Seasonal Patterns:  Monthly
+  Inverse:            0
+
+Model Parameters
+  Top k:              3                   Num Kernels:        6
+  Enc In:             57                  Dec In:             57
+  C Out:              57                  d model:            32
+  n heads:            8                   e layers:           3
+  d layers:           1                   d FF:               32
+  Moving Avg:         25                  Factor:             3
+  Distil:             1                   Dropout:            0.1
+  Embed:              timeF               Activation:         gelu
+
+Run Parameters
+  Num Workers:        10                  Itr:                1
+  Train Epochs:       50                  Batch Size:         16
+  Patience:           10                  Learning Rate:      0.01
+  Des:                CMonlyfreqency      Loss:               MSE
+  Lradj:              type1               Use Amp:            0
+
+GPU
+  Use GPU:            1                   GPU:                0
+  Use Multi GPU:      0                   Devices:            0,1,2,3
+
+De-stationary Projector Params
+  P Hidden Dims:      128, 128            P Hidden Layers:    2
+
+Use GPU: cuda:0
+>>>>>>>start training : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqency_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5705
+val 821
+test 1661
+        iters: 100, epoch: 1 | loss: 0.2360450
+        speed: 0.4449s/iter; left time: 7896.9580s
+        iters: 200, epoch: 1 | loss: 0.2684162
+        speed: 0.1863s/iter; left time: 3288.7316s
+        iters: 300, epoch: 1 | loss: 0.2747179
+        speed: 0.1882s/iter; left time: 3303.2507s
+Epoch: 1 cost time: 93.28739929199219
+Epoch: 1, Steps: 357 | Train Loss: 0.2538208 Vali Loss: 0.3506028 Test Loss: 0.4815841
+Validation loss decreased (inf --> 0.350603).  Saving model ...
+Updating learning rate to 0.01
+        iters: 100, epoch: 2 | loss: 0.2058270
+        speed: 1.0780s/iter; left time: 18750.2453s
+        iters: 200, epoch: 2 | loss: 0.2216697
+        speed: 0.1864s/iter; left time: 3223.2806s
+        iters: 300, epoch: 2 | loss: 0.1908793
+        speed: 0.1849s/iter; left time: 3178.9135s
+Epoch: 2 cost time: 90.09342575073242
+Epoch: 2, Steps: 357 | Train Loss: 0.2226560 Vali Loss: 0.3532819 Test Loss: 0.4836188
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.005
+        iters: 100, epoch: 3 | loss: 0.2323817
+        speed: 1.0745s/iter; left time: 18305.7155s
+        iters: 200, epoch: 3 | loss: 0.1472689
+        speed: 0.1856s/iter; left time: 3143.6740s
+        iters: 300, epoch: 3 | loss: 0.2176530
+        speed: 0.1853s/iter; left time: 3120.1190s
+Epoch: 3 cost time: 89.95599389076233
+Epoch: 3, Steps: 357 | Train Loss: 0.2006999 Vali Loss: 0.3677041 Test Loss: 0.4602117
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 0.0025
+        iters: 100, epoch: 4 | loss: 0.1203424
+        speed: 1.0713s/iter; left time: 17868.9704s
+        iters: 200, epoch: 4 | loss: 0.2022362
+        speed: 0.1859s/iter; left time: 3082.1630s
+        iters: 300, epoch: 4 | loss: 0.1399456
+        speed: 0.1853s/iter; left time: 3053.1582s
+Epoch: 4 cost time: 89.79641675949097
+Epoch: 4, Steps: 357 | Train Loss: 0.1885405 Vali Loss: 0.3704479 Test Loss: 0.4680311
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 0.00125
+        iters: 100, epoch: 5 | loss: 0.1251481
+        speed: 1.0702s/iter; left time: 17468.6485s
+        iters: 200, epoch: 5 | loss: 0.1903678
+        speed: 0.1854s/iter; left time: 3007.6748s
+        iters: 300, epoch: 5 | loss: 0.1525077
+        speed: 0.1858s/iter; left time: 2995.1398s
+Epoch: 5 cost time: 89.60534524917603
+Epoch: 5, Steps: 357 | Train Loss: 0.1813629 Vali Loss: 0.4105108 Test Loss: 0.4962977
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 0.000625
+        iters: 100, epoch: 6 | loss: 0.2436212
+        speed: 1.0678s/iter; left time: 17048.8509s
+        iters: 200, epoch: 6 | loss: 0.1890131
+        speed: 0.1874s/iter; left time: 2973.1810s
+        iters: 300, epoch: 6 | loss: 0.1514273
+        speed: 0.1858s/iter; left time: 2929.3598s
+Epoch: 6 cost time: 90.09577131271362
+Epoch: 6, Steps: 357 | Train Loss: 0.1774397 Vali Loss: 0.4373107 Test Loss: 0.5019602
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 0.0003125
+        iters: 100, epoch: 7 | loss: 0.1677268
+        speed: 1.0700s/iter; left time: 16701.0417s
+        iters: 200, epoch: 7 | loss: 0.1550522
+        speed: 0.1870s/iter; left time: 2900.7588s
+        iters: 300, epoch: 7 | loss: 0.1361341
+        speed: 0.1864s/iter; left time: 2871.6778s
+Epoch: 7 cost time: 89.86718153953552
+Epoch: 7, Steps: 357 | Train Loss: 0.1750416 Vali Loss: 0.4291465 Test Loss: 0.5058774
+EarlyStopping counter: 6 out of 10
+Updating learning rate to 0.00015625
+        iters: 100, epoch: 8 | loss: 0.1767006
+        speed: 1.0683s/iter; left time: 16293.9813s
+        iters: 200, epoch: 8 | loss: 0.1382761
+        speed: 0.1844s/iter; left time: 2793.6335s
+        iters: 300, epoch: 8 | loss: 0.1622538
+        speed: 0.1857s/iter; left time: 2795.7910s
+Epoch: 8 cost time: 89.44201135635376
+Epoch: 8, Steps: 357 | Train Loss: 0.1737944 Vali Loss: 0.4362060 Test Loss: 0.5030199
+EarlyStopping counter: 7 out of 10
+Updating learning rate to 7.8125e-05
+        iters: 100, epoch: 9 | loss: 0.1762265
+        speed: 1.0724s/iter; left time: 15973.5410s
+        iters: 200, epoch: 9 | loss: 0.1745650
+        speed: 0.1865s/iter; left time: 2759.2399s
+        iters: 300, epoch: 9 | loss: 0.1696196
+        speed: 0.1874s/iter; left time: 2754.4709s
+Epoch: 9 cost time: 90.19615817070007
+Epoch: 9, Steps: 357 | Train Loss: 0.1734519 Vali Loss: 0.4336076 Test Loss: 0.5033831
+EarlyStopping counter: 8 out of 10
+Updating learning rate to 3.90625e-05
+        iters: 100, epoch: 10 | loss: 0.1459715
+        speed: 1.0718s/iter; left time: 15581.6423s
+        iters: 200, epoch: 10 | loss: 0.1655704
+        speed: 0.1866s/iter; left time: 2694.4386s
+        iters: 300, epoch: 10 | loss: 0.1030333
+        speed: 0.1868s/iter; left time: 2679.0453s
+Epoch: 10 cost time: 90.10760283470154
+Epoch: 10, Steps: 357 | Train Loss: 0.1728599 Vali Loss: 0.4349243 Test Loss: 0.5040101
+EarlyStopping counter: 9 out of 10
+Updating learning rate to 1.953125e-05
+        iters: 100, epoch: 11 | loss: 0.1486854
+        speed: 1.0714s/iter; left time: 15193.1891s
+        iters: 200, epoch: 11 | loss: 0.1446220
+        speed: 0.1844s/iter; left time: 2596.0824s
+        iters: 300, epoch: 11 | loss: 0.2460673
+        speed: 0.1857s/iter; left time: 2596.6901s
+Epoch: 11 cost time: 89.74997234344482
+Epoch: 11, Steps: 357 | Train Loss: 0.1722755 Vali Loss: 0.4364645 Test Loss: 0.5050338
+EarlyStopping counter: 10 out of 10
+Early stopping
+>>>>>>>testing : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqency_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1661
+test shape: (1661, 24, 1) (1661, 24, 1)
+test shape: (1661, 24, 1) (1661, 24, 1)
+mse:0.48189350962638855, mae:0.506952166557312, dtw:Not calculated
+(TL) PS D:\PYCODE\Time-Series-Library-main\NewlyMAPTST\AMPTST> bash .\scripts\AMPTST\main\AMPTST.sh
+Using GPU
+Args in experiment:
+Basic Config
+  Task Name:          long_term_forecast  Is Training:        1
+  Model ID:           h57                 Model:              AMPTST
+
+Data Loader
+  Data:               custom              Root Path:          ./dataset/mydata_v1/
+  Data Path:          h57.csv             Features:           MS
+  Target:             OT                  Freq:               h
+  Checkpoints:        ./checkpoints/
+
+Forecasting Task
+  Seq Len:            168                 Label Len:          0
+  Pred Len:           24                  Seasonal Patterns:  Monthly
+  Inverse:            0
+
+Model Parameters
+  Top k:              3                   Num Kernels:        6
+  Enc In:             57                  Dec In:             57
+  C Out:              57                  d model:            32
+  n heads:            8                   e layers:           3
+  d layers:           1                   d FF:               32
+  Moving Avg:         25                  Factor:             3
+  Distil:             1                   Dropout:            0.1
+  Embed:              timeF               Activation:         gelu
+
+Run Parameters
+  Num Workers:        10                  Itr:                1
+  Train Epochs:       50                  Batch Size:         32
+  Patience:           10                  Learning Rate:      0.01
+  Des:                CMonlyfreqencyBS32  Loss:               MSE
+  Lradj:              type1               Use Amp:            0
+
+GPU
+  Use GPU:            1                   GPU:                0
+  Use Multi GPU:      0                   Devices:            0,1,2,3
+
+De-stationary Projector Params
+  P Hidden Dims:      128, 128            P Hidden Layers:    2
+
+Use GPU: cuda:0
+>>>>>>>start training : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS32_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5705
+val 821
+test 1661
+        iters: 100, epoch: 1 | loss: 0.1979171
+        speed: 0.6234s/iter; left time: 5517.4217s
+Epoch: 1 cost time: 92.32263207435608
+Epoch: 1, Steps: 179 | Train Loss: 0.2875246 Vali Loss: 0.6092812 Test Loss: 0.6674864
+Validation loss decreased (inf --> 0.609281).  Saving model ...
+Updating learning rate to 0.01
+        iters: 100, epoch: 2 | loss: 0.2073795
+        speed: 1.4339s/iter; left time: 12435.1511s
+Epoch: 2 cost time: 88.83066534996033
+Epoch: 2, Steps: 179 | Train Loss: 0.2154671 Vali Loss: 0.3750647 Test Loss: 0.5374842
+Validation loss decreased (0.609281 --> 0.375065).  Saving model ...
+Updating learning rate to 0.005
+        iters: 100, epoch: 3 | loss: 0.2139677
+        speed: 1.4690s/iter; left time: 12476.4543s
+Epoch: 3 cost time: 90.79308748245239
+Epoch: 3, Steps: 179 | Train Loss: 0.1939292 Vali Loss: 0.4282334 Test Loss: 0.5545253
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.0025
+        iters: 100, epoch: 4 | loss: 0.1525330
+        speed: 1.4333s/iter; left time: 11916.1601s
+Epoch: 4 cost time: 88.46384882926941
+Epoch: 4, Steps: 179 | Train Loss: 0.1782327 Vali Loss: 0.5282539 Test Loss: 0.6069816
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 0.00125
+        iters: 100, epoch: 5 | loss: 0.1181288
+        speed: 1.4241s/iter; left time: 11584.6553s
+Epoch: 5 cost time: 88.31349778175354
+Epoch: 5, Steps: 179 | Train Loss: 0.1684649 Vali Loss: 0.4326281 Test Loss: 0.5462399
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 0.000625
+        iters: 100, epoch: 6 | loss: 0.2086676
+        speed: 1.4178s/iter; left time: 11280.1994s
+Epoch: 6 cost time: 87.87537693977356
+Epoch: 6, Steps: 179 | Train Loss: 0.1631366 Vali Loss: 0.4481437 Test Loss: 0.5509753
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 0.0003125
+        iters: 100, epoch: 7 | loss: 0.1851830
+        speed: 1.4193s/iter; left time: 11037.6662s
+Epoch: 7 cost time: 87.83124828338623
+Epoch: 7, Steps: 179 | Train Loss: 0.1602479 Vali Loss: 0.4874576 Test Loss: 0.6042700
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 0.00015625
+        iters: 100, epoch: 8 | loss: 0.1290332
+        speed: 1.4193s/iter; left time: 10784.1225s
+Epoch: 8 cost time: 87.857501745224
+Epoch: 8, Steps: 179 | Train Loss: 0.1588668 Vali Loss: 0.4594066 Test Loss: 0.5727796
+EarlyStopping counter: 6 out of 10
+Updating learning rate to 7.8125e-05
+        iters: 100, epoch: 9 | loss: 0.1565385
+        speed: 1.4215s/iter; left time: 10546.0666s
+Epoch: 9 cost time: 88.3779284954071
+Epoch: 9, Steps: 179 | Train Loss: 0.1575728 Vali Loss: 0.4562071 Test Loss: 0.5641977
+EarlyStopping counter: 7 out of 10
+Updating learning rate to 3.90625e-05
+        iters: 100, epoch: 10 | loss: 0.1147907
+        speed: 1.4208s/iter; left time: 10286.5526s
+Epoch: 10 cost time: 88.02683734893799
+Epoch: 10, Steps: 179 | Train Loss: 0.1578206 Vali Loss: 0.4639099 Test Loss: 0.5728347
+EarlyStopping counter: 8 out of 10
+Updating learning rate to 1.953125e-05
+        iters: 100, epoch: 11 | loss: 0.1607535
+        speed: 1.4193s/iter; left time: 10021.6272s
+Epoch: 11 cost time: 88.19306683540344
+Epoch: 11, Steps: 179 | Train Loss: 0.1574592 Vali Loss: 0.4530909 Test Loss: 0.5646197
+EarlyStopping counter: 9 out of 10
+Updating learning rate to 9.765625e-06
+        iters: 100, epoch: 12 | loss: 0.1709219
+        speed: 1.4209s/iter; left time: 9778.5051s
+Epoch: 12 cost time: 88.26426100730896
+Epoch: 12, Steps: 179 | Train Loss: 0.1573909 Vali Loss: 0.4657226 Test Loss: 0.5776950
+EarlyStopping counter: 10 out of 10
+Early stopping
+>>>>>>>testing : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS32_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1661
+test shape: (1661, 24, 1) (1661, 24, 1)
+test shape: (1661, 24, 1) (1661, 24, 1)
+mse:0.5378503799438477, mae:0.5423446297645569, dtw:Not calculated
+(TL) PS D:\PYCODE\Time-Series-Library-main\NewlyMAPTST\AMPTST> bash .\scripts\AMPTST\main\AMPTST.sh
+Using GPU
+Args in experiment:
+Basic Config
+  Task Name:          long_term_forecast  Is Training:        1
+  Model ID:           h57                 Model:              AMPTST
+
+Data Loader
+  Data:               custom              Root Path:          ./dataset/mydata_v1/
+  Data Path:          h57.csv             Features:           MS
+  Target:             OT                  Freq:               h
+  Checkpoints:        ./checkpoints/
+
+Forecasting Task
+  Seq Len:            168                 Label Len:          0
+  Pred Len:           24                  Seasonal Patterns:  Monthly
+  Inverse:            0
+
+Model Parameters
+  Top k:              3                   Num Kernels:        6
+  Enc In:             57                  Dec In:             57
+  C Out:              57                  d model:            32
+  n heads:            8                   e layers:           3
+  d layers:           1                   d FF:               32
+  Moving Avg:         25                  Factor:             3
+  Distil:             1                   Dropout:            0.1
+  Embed:              timeF               Activation:         gelu
+
+Run Parameters
+  Num Workers:        10                  Itr:                1
+  Train Epochs:       50                  Batch Size:         64
+  Patience:           10                  Learning Rate:      0.01
+  Des:                CMonlyfreqencyBS64  Loss:               MSE
+  Lradj:              type1               Use Amp:            0
+
+GPU
+  Use GPU:            1                   GPU:                0
+  Use Multi GPU:      0                   Devices:            0,1,2,3
+
+De-stationary Projector Params
+  P Hidden Dims:      128, 128            P Hidden Layers:    2
+
+Use GPU: cuda:0
+>>>>>>>start training : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS64_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5705
+val 821
+test 1661
+Epoch: 1 cost time: 70.9754524230957
+Epoch: 1, Steps: 90 | Train Loss: 0.3195559 Vali Loss: 0.9575101 Test Loss: 1.1563904
+Validation loss decreased (inf --> 0.957510).  Saving model ...
+Updating learning rate to 0.01
+Epoch: 2 cost time: 66.7700605392456
+Epoch: 2, Steps: 90 | Train Loss: 0.2045213 Vali Loss: 0.4146586 Test Loss: 0.7498940
+Validation loss decreased (0.957510 --> 0.414659).  Saving model ...
+Updating learning rate to 0.005
+Epoch: 3 cost time: 66.99906992912292
+Epoch: 3, Steps: 90 | Train Loss: 0.1852948 Vali Loss: 0.4315301 Test Loss: 0.6321850
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.0025
+Epoch: 4 cost time: 67.17466187477112
+Epoch: 4, Steps: 90 | Train Loss: 0.1687869 Vali Loss: 0.4177019 Test Loss: 0.5663570
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 0.00125
+Epoch: 5 cost time: 66.885262966156
+Epoch: 5, Steps: 90 | Train Loss: 0.1610670 Vali Loss: 0.4208966 Test Loss: 0.5722785
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 0.000625
+Epoch: 6 cost time: 66.9299852848053
+Epoch: 6, Steps: 90 | Train Loss: 0.1563000 Vali Loss: 0.4373644 Test Loss: 0.5781354
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 0.0003125
+Epoch: 7 cost time: 66.96915793418884
+Epoch: 7, Steps: 90 | Train Loss: 0.1538971 Vali Loss: 0.4304404 Test Loss: 0.5660425
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 0.00015625
+Epoch: 8 cost time: 67.10098171234131
+Epoch: 8, Steps: 90 | Train Loss: 0.1524339 Vali Loss: 0.4273410 Test Loss: 0.5650319
+EarlyStopping counter: 6 out of 10
+Updating learning rate to 7.8125e-05
+Epoch: 9 cost time: 66.9563205242157
+Epoch: 9, Steps: 90 | Train Loss: 0.1513789 Vali Loss: 0.4277811 Test Loss: 0.5579872
+EarlyStopping counter: 7 out of 10
+Updating learning rate to 3.90625e-05
+Epoch: 10 cost time: 66.84739995002747
+Epoch: 10, Steps: 90 | Train Loss: 0.1522926 Vali Loss: 0.4316212 Test Loss: 0.5624493
+EarlyStopping counter: 8 out of 10
+Updating learning rate to 1.953125e-05
+Epoch: 11 cost time: 66.78190469741821
+Epoch: 11, Steps: 90 | Train Loss: 0.1514471 Vali Loss: 0.4232075 Test Loss: 0.5548720
+EarlyStopping counter: 9 out of 10
+Updating learning rate to 9.765625e-06
+Epoch: 12 cost time: 66.95798349380493
+Epoch: 12, Steps: 90 | Train Loss: 0.1505834 Vali Loss: 0.4219531 Test Loss: 0.5566595
+EarlyStopping counter: 10 out of 10
+Early stopping
+>>>>>>>testing : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS64_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1661
+test shape: (1661, 24, 1) (1661, 24, 1)
+test shape: (1661, 24, 1) (1661, 24, 1)
+mse:0.7500940561294556, mae:0.6216070055961609, dtw:Not calculated
+(TL) PS D:\PYCODE\Time-Series-Library-main\NewlyMAPTST\AMPTST> bash .\scripts\AMPTST\main\AMPTST.sh
+Using GPU
+Args in experiment:
+Basic Config
+  Task Name:          long_term_forecast  Is Training:        1
+  Model ID:           h57                 Model:              AMPTST
+
+Data Loader
+  Data:               custom              Root Path:          ./dataset/mydata_v1/
+  Data Path:          h57.csv             Features:           MS
+  Target:             OT                  Freq:               h
+  Checkpoints:        ./checkpoints/
+
+Forecasting Task
+  Seq Len:            168                 Label Len:          0
+  Pred Len:           24                  Seasonal Patterns:  Monthly
+  Inverse:            0
+
+Model Parameters
+  Top k:              3                   Num Kernels:        6
+  Enc In:             57                  Dec In:             57
+  C Out:              57                  d model:            32
+  n heads:            8                   e layers:           3
+  d layers:           1                   d FF:               32
+  Moving Avg:         25                  Factor:             3
+  Distil:             1                   Dropout:            0.1
+  Embed:              timeF               Activation:         gelu
+
+Run Parameters
+  Num Workers:        10                  Itr:                1
+  Train Epochs:       50                  Batch Size:         128
+  Patience:           10                  Learning Rate:      0.01
+  Des:                CMonlyfreqencyBS128 Loss:               MSE
+  Lradj:              type1               Use Amp:            0
+
+GPU
+  Use GPU:            1                   GPU:                0
+  Use Multi GPU:      0                   Devices:            0,1,2,3
+
+De-stationary Projector Params
+  P Hidden Dims:      128, 128            P Hidden Layers:    2
+
+Use GPU: cuda:0
+>>>>>>>start training : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS128_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5705
+val 821
+test 1661
+Epoch: 1 cost time: 61.43746614456177
+Epoch: 1, Steps: 45 | Train Loss: 0.4071337 Vali Loss: 1.5433472 Test Loss: 1.4901321
+Validation loss decreased (inf --> 1.543347).  Saving model ...
+Updating learning rate to 0.01
+Epoch: 2 cost time: 59.08912134170532
+Epoch: 2, Steps: 45 | Train Loss: 0.2088035 Vali Loss: 0.7538802 Test Loss: 1.1206367
+Validation loss decreased (1.543347 --> 0.753880).  Saving model ...
+Updating learning rate to 0.005
+Epoch: 3 cost time: 59.26507234573364
+Epoch: 3, Steps: 45 | Train Loss: 0.1893743 Vali Loss: 0.6824815 Test Loss: 0.8905970
+Validation loss decreased (0.753880 --> 0.682481).  Saving model ...
+Updating learning rate to 0.0025
+Epoch: 4 cost time: 60.87257719039917
+Epoch: 4, Steps: 45 | Train Loss: 0.1806582 Vali Loss: 0.6583139 Test Loss: 0.9237095
+Validation loss decreased (0.682481 --> 0.658314).  Saving model ...
+Updating learning rate to 0.00125
+Epoch: 5 cost time: 61.259907722473145
+Epoch: 5, Steps: 45 | Train Loss: 0.1755929 Vali Loss: 0.8436918 Test Loss: 1.0196210
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 0.000625
+Epoch: 6 cost time: 61.191359996795654
+Epoch: 6, Steps: 45 | Train Loss: 0.1724002 Vali Loss: 0.6837367 Test Loss: 0.8972399
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 0.0003125
+Epoch: 7 cost time: 60.30177664756775
+Epoch: 7, Steps: 45 | Train Loss: 0.1714201 Vali Loss: 0.6767266 Test Loss: 0.8691493
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 0.00015625
+Epoch: 8 cost time: 59.38438153266907
+Epoch: 8, Steps: 45 | Train Loss: 0.1705067 Vali Loss: 0.6772541 Test Loss: 0.8612431
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 7.8125e-05
+Epoch: 9 cost time: 59.15746450424194
+Epoch: 9, Steps: 45 | Train Loss: 0.1702343 Vali Loss: 0.6726033 Test Loss: 0.8647560
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 3.90625e-05
+Epoch: 10 cost time: 59.331719160079956
+Epoch: 10, Steps: 45 | Train Loss: 0.1702841 Vali Loss: 0.6674929 Test Loss: 0.8507675
+EarlyStopping counter: 6 out of 10
+Updating learning rate to 1.953125e-05
+Epoch: 11 cost time: 59.19942665100098
+Epoch: 11, Steps: 45 | Train Loss: 0.1705090 Vali Loss: 0.6390208 Test Loss: 0.8335069
+Validation loss decreased (0.658314 --> 0.639021).  Saving model ...
+Updating learning rate to 9.765625e-06
+Epoch: 12 cost time: 59.58503246307373
+Epoch: 12, Steps: 45 | Train Loss: 0.1698961 Vali Loss: 0.6791774 Test Loss: 0.8679664
+EarlyStopping counter: 1 out of 10
+Updating learning rate to 4.8828125e-06
+Epoch: 13 cost time: 60.281081199645996
+Epoch: 13, Steps: 45 | Train Loss: 0.1700525 Vali Loss: 0.6817749 Test Loss: 0.8771641
+EarlyStopping counter: 2 out of 10
+Updating learning rate to 2.44140625e-06
+Epoch: 14 cost time: 59.36091208457947
+Epoch: 14, Steps: 45 | Train Loss: 0.1698936 Vali Loss: 0.6915882 Test Loss: 0.8725854
+EarlyStopping counter: 3 out of 10
+Updating learning rate to 1.220703125e-06
+Epoch: 15 cost time: 59.0796434879303
+Epoch: 15, Steps: 45 | Train Loss: 0.1705842 Vali Loss: 0.6797361 Test Loss: 0.8664694
+EarlyStopping counter: 4 out of 10
+Updating learning rate to 6.103515625e-07
+Epoch: 16 cost time: 59.24845314025879
+Epoch: 16, Steps: 45 | Train Loss: 0.1703777 Vali Loss: 0.6778327 Test Loss: 0.8679430
+EarlyStopping counter: 5 out of 10
+Updating learning rate to 3.0517578125e-07
+Epoch: 17 cost time: 59.192285776138306
+Epoch: 17, Steps: 45 | Train Loss: 0.1702686 Vali Loss: 0.6842046 Test Loss: 0.8807331
+EarlyStopping counter: 6 out of 10
+Updating learning rate to 1.52587890625e-07
+Epoch: 18 cost time: 59.26653814315796
+Epoch: 18, Steps: 45 | Train Loss: 0.1701422 Vali Loss: 0.7133697 Test Loss: 0.8941990
+EarlyStopping counter: 7 out of 10
+Updating learning rate to 7.62939453125e-08
+Epoch: 19 cost time: 59.15169644355774
+Epoch: 19, Steps: 45 | Train Loss: 0.1697126 Vali Loss: 0.6820050 Test Loss: 0.8795360
+EarlyStopping counter: 8 out of 10
+Updating learning rate to 3.814697265625e-08
+Epoch: 20 cost time: 59.19575595855713
+Epoch: 20, Steps: 45 | Train Loss: 0.1704576 Vali Loss: 0.6848320 Test Loss: 0.8733854
+EarlyStopping counter: 9 out of 10
+Updating learning rate to 1.9073486328125e-08
+Epoch: 21 cost time: 59.243642807006836
+Epoch: 21, Steps: 45 | Train Loss: 0.1700016 Vali Loss: 0.6863078 Test Loss: 0.8701318
+EarlyStopping counter: 10 out of 10
+Early stopping
+>>>>>>>testing : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS128_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 1661
+test shape: (1661, 24, 1) (1661, 24, 1)
+test shape: (1661, 24, 1) (1661, 24, 1)
+mse:0.8338662981987, mae:0.6940804719924927, dtw:Not calculated
+(TL) PS D:\PYCODE\Time-Series-Library-main\NewlyMAPTST\AMPTST> bash .\scripts\AMPTST\main\AMPTST.sh
+Using GPU
+Args in experiment:
+Basic Config
+  Task Name:          long_term_forecast  Is Training:        1
+  Model ID:           h57                 Model:              AMPTST
+
+Data Loader
+  Data:               custom              Root Path:          ./dataset/mydata_v1/
+  Data Path:          h57.csv             Features:           MS
+  Target:             OT                  Freq:               h
+  Checkpoints:        ./checkpoints/
+
+Forecasting Task
+  Seq Len:            168                 Label Len:          0
+  Pred Len:           24                  Seasonal Patterns:  Monthly
+  Inverse:            0
+
+Model Parameters
+  Top k:              3                   Num Kernels:        6
+  Enc In:             57                  Dec In:             57
+  C Out:              57                  d model:            32
+  n heads:            8                   e layers:           3
+  d layers:           1                   d FF:               32
+  Moving Avg:         25                  Factor:             3
+  Distil:             1                   Dropout:            0.1
+  Embed:              timeF               Activation:         gelu
+
+Run Parameters
+  Num Workers:        10                  Itr:                1
+  Train Epochs:       50                  Batch Size:         256
+  Patience:           10                  Learning Rate:      0.01
+  Des:                CMonlyfreqencyBS256 Loss:               MSE
+  Lradj:              type1               Use Amp:            0
+
+GPU
+  Use GPU:            1                   GPU:                0
+  Use Multi GPU:      0                   Devices:            0,1,2,3
+
+De-stationary Projector Params
+  P Hidden Dims:      128, 128            P Hidden Layers:    2
+
+Use GPU: cuda:0
+>>>>>>>start training : h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMonlyfreqencyBS256_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 5705
+val 821
+test 1661
+Epoch: 1 cost time: 58.78159213066101
+
