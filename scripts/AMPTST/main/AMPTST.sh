@@ -19,7 +19,7 @@ train_epochs=50
 patience=10
 f=57
 data_path=h57.csv
-des=CM
+des=CM_psloss1
 for pred_len in 24
 do
   python -u run.py \
@@ -55,5 +55,7 @@ do
     --down_sampling_layers $down_sampling_layers \
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
-    --pf 0
+    --pf 0 \
+    --use_ps_loss \
+    --head_or_projection 1
 done
