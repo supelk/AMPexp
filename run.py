@@ -43,7 +43,10 @@ if __name__ == '__main__':
     parser.add_argument('--label_len', type=int, default=48, help='start token length')
     parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
     parser.add_argument('--seasonal_patterns', type=str, default='Monthly', help='subset for M4')
-    parser.add_argument('--inverse', action='store_true', help='inverse output data', default=False)
+    parser.add_argument('--inverse', type=bool, help='inverse output data,', default=1)
+    # storage result
+    parser.add_argument('--storage_result', default=False, action="store_true",
+                        help="storage result")
 
     # inputation task
     parser.add_argument('--mask_rate', type=float, default=0.25, help='mask ratio')
@@ -143,8 +146,14 @@ if __name__ == '__main__':
     #  AMPTST
     parser.add_argument('--pf', type=int, default=0, help='0:use period and frequency; 1:only period; 2: only frequency')
 
-    #
-    pa
+    # loss functions
+    parser.add_argument('--ps_lambda', type=float, default=3.0, help='weight for ps_loss')
+    parser.add_argument('--use_ps_loss', type=int, default=0, help='whether to use ps_los')
+    parser.add_argument('--patch_len_threshold', type=int, default=24, help='patch length threshold')
+    parser.add_argument('--head_or_projection', type=int, default=0, help='0 for head, 1 for projection')
+
+
+
 
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:

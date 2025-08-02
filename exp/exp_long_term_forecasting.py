@@ -19,6 +19,11 @@ class Exp_Long_Term_Forecast(Exp_Basic):
     def __init__(self, args):
         super(Exp_Long_Term_Forecast, self).__init__(args)
 
+        self.ps_lambda = args.ps_lambda
+        self.use_ps_loss = args.use_ps_loss
+        self.patch_len_threshold = args.patch_len_threshold
+        self.kl_loss = nn.KLDivLoss(reduction='none')
+
     def _build_model(self):
         model = self.model_dict[self.args.model].Model(self.args).float()
 
@@ -37,7 +42,113 @@ class Exp_Long_Term_Forecast(Exp_Basic):
     def _select_criterion(self):
         criterion = nn.MSELoss()
         return criterion
- 
+
+    def create_patches(self, x, patch_len, stride):
+
+        x = x.permute(0, 2, 1)  # [B, C, L] -> [B, L, C]
+        B, C, L = x.shape
+
+        num_patches = (L - patch_len) // stride + 1
+        patches = x.unfold(2, patch_len, stride)
+        patches = patches.reshape(B, C, num_patches, patch_len)
+
+        return patches
+
+    def fouriour_based_adaptive_patching(self, true, pred):
+
+        # Get patch length an stride
+        true_fft = torch.fft.rfft(true, dim=1)
+        frequency_list = torch.abs(true_fft).mean(0).mean(-1)
+        frequency_list[:1] = 0.0
+        top_index = torch.argmax(frequency_list)
+        period = (true.shape[1] // top_index)
+        patch_len = min(period // 2, self.patch_len_threshold)
+        stride = patch_len // 2
+
+        # Patching
+        true_patch = self.create_patches(true, patch_len, stride=stride)
+        pred_patch = self.create_patches(pred, patch_len, stride=stride)
+
+        return true_patch, pred_patch
+
+    def patch_wise_structural_loss(self, true_patch, pred_patch):
+
+        # Calculate mean
+        true_patch_mean = torch.mean(true_patch, dim=-1, keepdim=True)
+        pred_patch_mean = torch.mean(pred_patch, dim=-1, keepdim=True)
+
+        # Calculate variance and standard deviation
+        true_patch_var = torch.var(true_patch, dim=-1, keepdim=True, unbiased=False)
+        pred_patch_var = torch.var(pred_patch, dim=-1, keepdim=True, unbiased=False)
+        true_patch_std = torch.sqrt(true_patch_var)
+        pred_patch_std = torch.sqrt(pred_patch_var)
+
+        # Calculate Covariance
+        true_pred_patch_cov = torch.mean((true_patch - true_patch_mean) * (pred_patch - pred_patch_mean), dim=-1,
+                                         keepdim=True)
+
+        # 1. Calculate linear correlation loss
+        patch_linear_corr = (true_pred_patch_cov + 1e-5) / (true_patch_std * pred_patch_std + 1e-5)
+        linear_corr_loss = (1.0 - patch_linear_corr).mean()
+
+        # 2. Calculate variance
+        true_patch_softmax = torch.softmax(true_patch, dim=-1)
+        pred_patch_softmax = torch.log_softmax(pred_patch, dim=-1)
+        var_loss = self.kl_loss(pred_patch_softmax, true_patch_softmax).sum(dim=-1).mean()
+
+        # 3. Mean loss
+        mean_loss = torch.abs(true_patch_mean - pred_patch_mean).mean()
+
+        return linear_corr_loss, var_loss, mean_loss
+
+    def ps_loss(self, true, pred):
+
+        # Fourior based adaptive patching
+        true_patch, pred_patch = self.fouriour_based_adaptive_patching(true, pred)
+
+        # Pacth-wise structural loss
+        corr_loss, var_loss, mean_loss = self.patch_wise_structural_loss(true_patch, pred_patch)
+
+        # Gradient based dynamic weighting
+        alpha, beta, gamma = self.gradient_based_dynamic_weighting(true, pred, corr_loss, var_loss, mean_loss)
+
+        # Final PS loss
+        ps_loss = alpha * corr_loss + beta * var_loss + gamma * mean_loss
+
+        return ps_loss
+
+    def gradient_based_dynamic_weighting(self, true, pred, corr_loss, var_loss, mean_loss):
+
+        true = true.permute(0, 2, 1)
+        pred = pred.permute(0, 2, 1)
+        true_mean = torch.mean(true, dim=-1, keepdim=True)
+        pred_mean = torch.mean(pred, dim=-1, keepdim=True)
+        true_var = torch.var(true, dim=-1, keepdim=True, unbiased=False)
+        pred_var = torch.var(pred, dim=-1, keepdim=True, unbiased=False)
+        true_std = torch.sqrt(true_var)
+        pred_std = torch.sqrt(pred_var)
+        true_pred_cov = torch.mean((true - true_mean) * (pred - pred_mean), dim=-1, keepdim=True)
+        linear_sim = (true_pred_cov + 1e-5) / (true_std * pred_std + 1e-5)
+        linear_sim = (1.0 + linear_sim) * 0.5
+        var_sim = (2 * true_std * pred_std + 1e-5) / (true_var + pred_var + 1e-5)
+
+        # Gradiant based dynamic weighting
+        if self.args.head_or_projection == 0:
+            corr_gradient = torch.autograd.grad(corr_loss, self.model.head.parameters(), create_graph=True)[0]
+            var_gradient = torch.autograd.grad(var_loss, self.model.head.parameters(), create_graph=True)[0]
+            mean_gradient = torch.autograd.grad(mean_loss, self.model.head.parameters(), create_graph=True)[0]
+        else:
+            corr_gradient = torch.autograd.grad(corr_loss, self.model.projection.parameters(), create_graph=True)[0]
+            var_gradient = torch.autograd.grad(var_loss, self.model.projection.parameters(), create_graph=True)[0]
+            mean_gradient = torch.autograd.grad(mean_loss, self.model.projection.parameters(), create_graph=True)[0]
+        gradiant_avg = (corr_gradient + var_gradient + mean_gradient) / 3.0
+
+        aplha = gradiant_avg.norm().detach() / corr_gradient.norm().detach()
+        beta = gradiant_avg.norm().detach() / var_gradient.norm().detach()
+        gamma = gradiant_avg.norm().detach() / mean_gradient.norm().detach()
+        gamma = gamma * torch.mean(linear_sim * var_sim).detach()
+
+        return aplha, beta, gamma
 
     def vali(self, vali_data, vali_loader, criterion):
         total_loss = []
@@ -128,6 +239,11 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
                     loss = criterion(outputs, batch_y)
+
+                    if self.use_ps_loss:
+                        ps_loss = self.ps_loss(batch_y, outputs)
+                        loss += ps_loss * self.ps_lambda
+
                     train_loss.append(loss.item())
 
                 if (i + 1) % 100 == 0:
@@ -224,10 +340,12 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 preds.append(pred)
                 trues.append(true)
                 if i % 20 == 0:
+                    visual(true[0, :, -1], pred[0, :, -1], os.path.join(folder_path, str(i), 'perd' + '.pdf'))
                     input = batch_x.detach().cpu().numpy()
                     if test_data.scale and self.args.inverse:
-                        shape = input.shape
-                        input = test_data.inverse_transform(input.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                        # shape = input.shape
+                        # input = test_data.inverse_transform(input.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                        visual(trues_inverse[0, :, -1], preds_inverse[0, :, -1], os.path.join(folder_path, str(i), 'perd_inverse' + '.pdf'))
                     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
@@ -237,6 +355,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         if test_data.scale and self.args.inverse:
             preds_inverse = np.concatenate(preds_inverse, axis=0)
             trues_inverse = np.concatenate(trues_inverse, axis=0)
+            preds_inverse = preds_inverse.reshape(-1, preds.shape[-2], preds.shape[-1])
+            trues_inverse = trues_inverse.reshape(-1, trues.shape[-2], trues.shape[-1])
         print('test shape:', preds.shape, trues.shape)
         preds = preds.reshape(-1, preds.shape[-2], preds.shape[-1])
         trues = trues.reshape(-1, trues.shape[-2], trues.shape[-1])
@@ -271,9 +391,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         f.write('\n')
         f.write('\n')
         f.close()
-
-        np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
-        np.save(folder_path + 'pred.npy', preds)
-        np.save(folder_path + 'true.npy', trues)
-
+        np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape_i, mspe]))
+        if self.args.storage_result:
+            np.save(folder_path + 'pred.npy', preds_inverse)
+            np.save(folder_path + 'true.npy', trues_inverse)
         return
