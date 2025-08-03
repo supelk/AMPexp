@@ -324,12 +324,14 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     shape = batch_y.shape
                     if outputs.shape[-1] != batch_y.shape[-1]:
                         outputs = np.tile(outputs, [1, 1, int(batch_y.shape[-1] / outputs.shape[-1])])
-                    outputs = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
-                    batch_y = test_data.inverse_transform(batch_y.reshape(shape[0] * shape[1], -1)).reshape(shape)
-                    outputs_inverse = outputs[:, :, f_dim:]
-                    batch_y_inverse = batch_y[:, :, f_dim:]
-                    preds_inverse.append(outputs_inverse)
-                    trues_inverse.append(batch_y_inverse)
+                    outputs_inverse = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                    batch_y_inverse = test_data.inverse_transform(batch_y.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                    outputs_inverse = outputs_inverse[:, :, f_dim:]
+                    batch_y_inverse = batch_y_inverse[:, :, f_dim:]
+                    pi = outputs_inverse
+                    ti = batch_y_inverse
+                    preds_inverse.append(pi)
+                    trues_inverse.append(ti)
 
                 outputs = outputs[:, :, f_dim:]
                 batch_y = batch_y[:, :, f_dim:]
@@ -340,12 +342,12 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 preds.append(pred)
                 trues.append(true)
                 if i % 20 == 0:
-                    visual(true[0, :, -1], pred[0, :, -1], os.path.join(folder_path, str(i), 'perd' + '.pdf'))
+                    visual(true[0, :, -1], pred[0, :, -1], os.path.join(folder_path, str(i) + 'perd.pdf'))
                     input = batch_x.detach().cpu().numpy()
-                    if test_data.scale and self.args.inverse:
+                    # if test_data.scale and self.args.inverse:
                         # shape = input.shape
                         # input = test_data.inverse_transform(input.reshape(shape[0] * shape[1], -1)).reshape(shape)
-                        visual(trues_inverse[0, :, -1], preds_inverse[0, :, -1], os.path.join(folder_path, str(i), 'perd_inverse' + '.pdf'))
+                        # visual(np.array(trues_inverse)[0, :, -1],np.array(preds_inverse)[0, :, -1], os.path.join(folder_path, str(i) + 'perd_inverse.pdf'))
                     gt = np.concatenate((input[0, :, -1], true[0, :, -1]), axis=0)
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
