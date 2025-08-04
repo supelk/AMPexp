@@ -19,12 +19,12 @@ train_epochs=50
 patience=10
 f=57
 data_path=h57.csv
-des=CM_psloss1
+des=CM_psloss1_16
 for pred_len in 24 168
 do
   python -u run.py \
     --task_name long_term_forecast \
-    --is_training 0 \
+    --is_training 1 \
     --root_path ./dataset/mydata_v1/ \
     --data_path $data_path \
     --model_id h57 \
@@ -56,6 +56,7 @@ do
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
     --pf 0 \
+    --ps_lambda 16.0 \
     --use_ps_loss 1 \
     --head_or_projection 1
 done
