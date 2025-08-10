@@ -205,3 +205,12 @@ mse:0.17470405995845795, mae:0.21878032386302948, mape_i:1585644.5
 weather_sl96_pl192__AMPTST_custom_ftM_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMk5ps1_16bs128_0  
 mse:nan, mae:nan, mape_i:nan
 
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.4566569924354553, mae:0.4966501295566559, mape_i:0.2714759111404419
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm8_nh4_el3_dl1_df16_fc3_ebtimeF_dtTrue_default_0  
+mse:0.6587508320808411, mae:0.6111079454421997, mape_i:0.33036479353904724
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm8_nh4_el3_dl1_df16_fc3_ebtimeF_dtTrue_default_0  
+mse:0.8747658133506775, mae:0.6922279000282288, mape_i:0.3741873502731323
+
