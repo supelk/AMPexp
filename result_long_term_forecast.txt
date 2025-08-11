@@ -226,3 +226,9 @@ mse:0.4372231364250183, mae:0.48120298981666565, mape_i:0.258781760931015
 h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_9_0  
 mse:0.5686195492744446, mae:0.552099347114563, mape_i:0.27955371141433716
 
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_9_0  
+mse:0.44345805048942566, mae:0.4817368686199188, mape_i:0.2578714191913605
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_9_0  
+mse:0.5553883910179138, mae:0.5366881489753723, mape_i:0.26073214411735535
+
