@@ -15,12 +15,12 @@ down_sampling_window=2
 learning_rate=0.01
 d_model=32
 d_ff=32
-train_epochs=50
+train_epochs=20
 patience=10
 f=57
 data_path=h57.csv
 des=CM
-for pred_len in 24
+for pred_len in 24 168
 do
   python -u run.py \
     --task_name long_term_forecast \
