@@ -56,7 +56,7 @@ do
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
     --pf 0 \
-    --ps_lambda 6.0 \
+    --ps_lambda 9.0 \
     --use_ps_loss 1 \
     --head_or_projection 1
 done
