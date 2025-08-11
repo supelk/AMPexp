@@ -12,6 +12,7 @@ d_ff=32
 batch_size=16
 train_epochs=20
 patience=10
+f=57
 
 python -u run.py \
   --task_name long_term_forecast \
@@ -35,7 +36,7 @@ python -u run.py \
   --itr 1 \
   --d_model $d_model \
   --d_ff $d_ff \
-  --batch_size 128 \
+  --batch_size 16 \
   --learning_rate $learning_rate \
   --train_epochs $train_epochs \
   --patience $patience \
@@ -64,7 +65,7 @@ python -u run.py \
   --itr 1 \
   --d_model $d_model \
   --d_ff $d_ff \
-  --batch_size 128 \
+  --batch_size 16 \
   --learning_rate $learning_rate \
   --train_epochs $train_epochs \
   --patience $patience \
