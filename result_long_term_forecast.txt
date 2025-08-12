@@ -259,3 +259,15 @@ mse:0.4874934256076813, mae:0.5184183716773987, mape_i:0.27315399050712585
 h57_168_24_sl168_pl168__TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
 mse:0.565372109413147, mae:0.5532928109169006, mape_i:0.27225854992866516
 
+168_24_sl168_pl24__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_test_0  
+mse:0.46904170513153076, mae:0.5066202878952026, mape_i:0.2738765478134155
+
+168_168_sl168_pl168__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_test_0  
+mse:0.5470234155654907, mae:0.5416499972343445, mape_i:0.28628459572792053
+
+168_24_sl168_pl24__Informer_custom_ftMS_ll48_dm128_nh8_el3_dl1_df256_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.8659963607788086, mae:0.6861724257469177, mape_i:0.3165416717529297
+
+168_168_sl168_pl168__Informer_custom_ftMS_ll48_dm128_nh8_el3_dl1_df256_fc3_ebtimeF_dtTrue_Exp_0  
+mse:1.149920105934143, mae:0.8050207495689392, mape_i:0.36382240056991577
+
