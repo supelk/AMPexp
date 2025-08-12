@@ -1,23 +1,15 @@
-# add --individual for DLinear-I
-if [ ! -d "./logs" ]; then
-    mkdir ./logs
-fi
-
-if [ ! -d "./logs/LongForecasting" ]; then
-    mkdir ./logs/LongForecasting
-fi
-pred_len=24
+seq_len=168
 model_name=DLinear
 
-root_path_name=./dataset/
-data_path_name=data_wh1_1hour_TST.csv
-model_id_name=custom_01
+root_path=./dataset/mydata_v1/
+data_path=h57.csv
+model_id_name=h57
 data_name=custom
 
 random_seed=2021
-for seq_len in 96 168
+for pred_len in 24 168
 do
-    python -u run_longExp.py \
+    python -u run.py \
       --random_seed $random_seed \
       --is_training 1 \
       --root_path $root_path_name \
@@ -28,7 +20,9 @@ do
       --features MS \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 8\
+      --enc_in 57\
       --dropout 0.2\
-      --itr 1 --batch_size 32 --learning_rate 0.001 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+      --train_epochs 20\
+      --patience 10\
+      --itr 1 --learning_rate 0.001
 done
