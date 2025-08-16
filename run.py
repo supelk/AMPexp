@@ -152,9 +152,10 @@ if __name__ == '__main__':
     parser.add_argument('--patch_len_threshold', type=int, default=24, help='patch length threshold')
     parser.add_argument('--head_or_projection', type=int, default=0, help='0 for head, 1 for projection')
 
-
-
-
+    # LSTM
+    parser.add_argument('--kernel_size', type=int, default=25.0, help='decomposition-kernel for lstm')
+    parser.add_argument('--decompsition', type=bool, default=False, help='decomposition or not for lstm ')
+    parser.add_argument('--individual', type=bool, default=False, help='individual or not for lstm ')
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:
         args.device = torch.device('cuda:{}'.format(args.gpu))
