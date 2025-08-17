@@ -89,7 +89,7 @@ class Model(nn.Module):
 
     def __init__(self, configs):
         super(Model, self).__init__()
-        self.channels = configs.c_in
+        self.channels = configs.enc_in
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
         self.d_model = configs.d_model
@@ -104,20 +104,20 @@ class Model(nn.Module):
                 self.Linear_Trend = nn.ModuleList()
 
                 for i in range(self.channels):
-                    self.Linear_Seasonal.append(nn.LSTM(1,self.pred_len,True,configs.e_layers))
-                    self.Linear_Trend.append(nn.LSTM(1,self.pred_len,True,configs.e_layers))
+                    self.Linear_Seasonal.append(nn.LSTM(1,self.pred_len,True,7))
+                    self.Linear_Trend.append(nn.LSTM(1,self.pred_len,True,7))
 
                 # Use this two lines if you want to visualize the weights
                 # self.Linear_Seasonal[i].weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
                 # self.Linear_Trend[i].weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
             else:
-                self.Linear_Seasonal = nn.LSTM(self.c_in,self.pred_len,True,configs.e_layers)
-                self.Linear_Trend = nn.LSTM(self.c_in,self.pred_len,True,configs.e_layers)
+                self.Linear_Seasonal = nn.LSTM(self.channels,self.pred_len,True,7)
+                self.Linear_Trend = nn.LSTM(self.channels,self.pred_len,True,7)
                 # Use this two lines if you want to visualize the weights
                 # self.Linear_Seasonal.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
                 # self.Linear_Trend.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
         else:
-            self.model = nn.LSTM(self.c_in,self.pred_len,True,configs.e_layers)
+            self.model = nn.LSTM(self.channels,self.pred_len,True,7)
 
         
     def forward(self, x):
