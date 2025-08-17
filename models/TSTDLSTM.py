@@ -38,6 +38,49 @@ class series_decomp(nn.Module):
         res = x - moving_mean
         return res, moving_mean
 
+# class LSTM(nn.Module):
+#     def __init__(
+#             self,
+#             input_size,  # 输入特征维度（对应 features:12）
+#             lstm_hidden,  # LSTM隐藏层维度
+#             output_len,  # 输出时间步（对应 output_len:24）
+#             num_layers
+#     ):
+#         super().__init__()
+#         # LSTM层：提取时序特征
+#         self.lstm = nn.LSTM(
+#             input_size=input_size,
+#             hidden_size=lstm_hidden,
+#             batch_first=True,
+#             num_layers=num_layers,
+#         )
+
+#         # 卷积层：将时间维度从168压缩到24，同时输出1个特征
+#         self.conv = nn.Conv1d(
+#             in_channels=lstm_hidden,
+#             out_channels,  # 输出特征数（对应 features:1）
+#             kernel_size=168 - output_len + 1  # 计算卷积核大小：168-24+1=145
+#         )
+
+#         # 激活函数（可选）
+#         self.relu = nn.ReLU()
+
+#     def forward(self, x):
+#         # 输入形状: (bs, 168, 12)
+
+#         # LSTM处理
+#         lstm_out, _ = self.lstm(x)  # 输出形状: (bs, 168, lstm_hidden)
+
+#         # 调整维度以适应Conv1d输入格式 (bs, channels, length)
+#         lstm_out = lstm_out.permute(0, 2, 1)  # 形状: (bs, lstm_hidden, 168)
+
+#         # 卷积压缩时间维度
+#         conv_out = self.conv(lstm_out)  # 输出形状: (bs, 1, 24)
+
+#         # 调整维度为 (bs, 24, 1)
+#         output = conv_out.permute(0, 2, 1)
+
+#         return output  # 形状: (bs, 24, 1)
 
 class Model(nn.Module):
     """
@@ -46,9 +89,10 @@ class Model(nn.Module):
 
     def __init__(self, configs):
         super(Model, self).__init__()
+        self.channels = configs.c_in
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
-
+        self.d_model = configs.d_model
         # Decompsition Kernel Size
         kernel_size = 25
         if configs.decompsition:
@@ -60,21 +104,22 @@ class Model(nn.Module):
                 self.Linear_Trend = nn.ModuleList()
 
                 for i in range(self.channels):
-                    self.Linear_Seasonal.append(nn.Linear(self.seq_len, self.pred_len))
-                    self.Linear_Trend.append(nn.Linear(self.seq_len, self.pred_len))
+                    self.Linear_Seasonal.append(nn.LSTM(1,self.pred_len,True,configs.e_layers))
+                    self.Linear_Trend.append(nn.LSTM(1,self.pred_len,True,configs.e_layers))
 
                 # Use this two lines if you want to visualize the weights
                 # self.Linear_Seasonal[i].weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
                 # self.Linear_Trend[i].weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
             else:
-                self.Linear_Seasonal = nn.Linear(self.seq_len, self.pred_len)
-                self.Linear_Trend = nn.Linear(self.seq_len, self.pred_len)
+                self.Linear_Seasonal = nn.LSTM(self.c_in,self.pred_len,True,configs.e_layers)
+                self.Linear_Trend = nn.LSTM(self.c_in,self.pred_len,True,configs.e_layers)
+                # Use this two lines if you want to visualize the weights
+                # self.Linear_Seasonal.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
+                # self.Linear_Trend.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
         else:
+            self.model = nn.LSTM(self.c_in,self.pred_len,True,configs.e_layers)
 
-            # Use this two lines if you want to visualize the weights
-            # self.Linear_Seasonal.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
-            # self.Linear_Trend.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
-
+        
     def forward(self, x):
         # x: [Batch, Input length, Channel]
         if self.decompsition:
@@ -91,7 +136,9 @@ class Model(nn.Module):
             else:
                 seasonal_output = self.Linear_Seasonal(seasonal_init)
                 trend_output = self.Linear_Trend(trend_init)
+            x = seasonal_output + trend_output
         else:
-
-        x = seasonal_output + trend_output
+            x = x.permute(0,2,1)
+            x = self.model(x)
+        
         return x.permute(0, 2, 1)  # to [Batch, Output length, Channel]
