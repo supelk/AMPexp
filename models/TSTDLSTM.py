@@ -93,6 +93,7 @@ class Model(nn.Module):
         self.seq_len = configs.seq_len
         self.pred_len = configs.pred_len
         self.d_model = configs.d_model
+        self.decompsition = configs.decompsition
         # Decompsition Kernel Size
         kernel_size = 25
         if configs.decompsition:
@@ -117,10 +118,10 @@ class Model(nn.Module):
                 # self.Linear_Seasonal.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
                 # self.Linear_Trend.weight = nn.Parameter((1/self.seq_len)*torch.ones([self.pred_len,self.seq_len]))
         else:
-            self.model = nn.LSTM(self.channels,self.pred_len,True,7)
+            self.model = nn.LSTM(self.channels,self.pred_len,batch_first=True,num_layers=7)
 
         
-    def forward(self, x):
+    def forward(self, x, x_mask=None,dec_input=None,y_mark=None):
         # x: [Batch, Input length, Channel]
         if self.decompsition:
             seasonal_init, trend_init = self.decompsition(x)
@@ -138,7 +139,7 @@ class Model(nn.Module):
                 trend_output = self.Linear_Trend(trend_init)
             x = seasonal_output + trend_output
         else:
-            x = x.permute(0,2,1)
-            x = self.model(x)
+            # x = x.permute(0,2,1)
+            x,_ = self.model(x)
         
         return x.permute(0, 2, 1)  # to [Batch, Output length, Channel]

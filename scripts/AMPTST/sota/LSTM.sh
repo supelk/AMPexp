@@ -22,6 +22,7 @@ do
       --pred_len $pred_len \
       --enc_in $f\
       --dropout 0.2\
+      --patention 10 \
       --des exp \
       --itr 1 --batch_size 32 --learning_rate 0.001
 done
