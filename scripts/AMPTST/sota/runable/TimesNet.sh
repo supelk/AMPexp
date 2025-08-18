@@ -1,16 +1,9 @@
 export CUDA_VISIBLE_DEVICES=0
-if [ ! -d "./logs" ]; then
-    mkdir ./logs
-fi
-
-if [ ! -d "./logs/LongForecasting" ]; then
-    mkdir ./logs/othermodel
-fi
 model_name=TimesNet
 f=57
 python -u run.py \
   --task_name long_term_forecast \
-  --is_training 1 \
+  --is_training 0 \
   --root_path ./dataset/mydata/ \
   --data_path h57.csv \
   --model_id h57_168_24 \
@@ -34,7 +27,7 @@ python -u run.py \
 
 python -u run.py \
   --task_name long_term_forecast \
-  --is_training 1 \
+  --is_training 0 \
   --root_path ./dataset/mydata/ \
   --data_path h57.csv \
   --model_id h57_168_24 \
