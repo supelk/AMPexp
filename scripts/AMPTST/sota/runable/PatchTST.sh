@@ -20,9 +20,11 @@ python -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'Exp' \
+  --des 'ExpPS' \
   --itr 1 \
-  --n_heads 4
+  --n_heads 4 \
+  --use_ps_loss 1 \
+  --head_or_projection 0
 
 python -u run.py \
   --task_name long_term_forecast \
@@ -42,6 +44,8 @@ python -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'Exp' \
+  --des 'ExpPS' \
   --itr 1 \
-  --n_heads 4
+  --n_heads 4 \
+  --use_ps_loss 1 \
+  --head_or_projection 0
