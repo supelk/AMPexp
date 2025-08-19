@@ -283,3 +283,36 @@ mse:0.4874934256076813, mae:0.5184183716773987, mape_i:0.27315399050712585
 h57_168_24_sl168_pl168__TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
 mse:0.565372109413147, mae:0.5532928109169006, mape_i:0.27225854992866516
 
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMk5for168_0  
+mse:0.6253852248191833, mae:0.5872538685798645, mape_i:0.31765246391296387
+
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_CMelayer2_0  
+mse:0.6910917162895203, mae:0.6124565005302429, mape_i:0.2930338382720947
+
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_CMelayer2_0  
+mse:0.6663026809692383, mae:0.6138346195220947, mape_i:0.3329806625843048
+
+h57_168_24_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.15_0  
+mse:0.4586537480354309, mae:0.4977174401283264, mape_i:0.26649436354637146
+
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.15_0  
+mse:0.5513299107551575, mae:0.5495526194572449, mape_i:0.2840288579463959
+
+h57_168_24_sl168_pl24_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.12_0
+mse:0.4741362929344177, mae:0.5075863599777222, mape_i:0.27235352993011475
+
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.12_0  
+mse:0.5630515217781067, mae:0.5578339695930481, mape_i:0.3052956461906433
+
+h57_168_24_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.08_0  
+mse:0.5139028429985046, mae:0.5339847803115845, mape_i:0.2852335274219513
+
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.08_0  
+mse:0.5788100361824036, mae:0.5634920597076416, mape_i:0.2893405556678772
+
+h57_168_24_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.18_0  
+mse:0.46069273352622986, mae:0.4954793453216553, mape_i:0.26227715611457825
+
+h57_168_168_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CMdrop0.18_0  
+mse:0.5889118313789368, mae:0.5668129324913025, mape_i:0.2846706807613373
+

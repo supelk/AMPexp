@@ -19,15 +19,15 @@ train_epochs=20
 patience=10
 f=57
 data_path=h57.csv
-des=CM
-for pred_len in 168
+des=CMdrop0.18
+for pred_len in 24 168
 do
   python -u run.py \
     --task_name long_term_forecast \
     --is_training 1 \
     --root_path ./dataset/mydata_v1/ \
     --data_path $data_path \
-    --model_id h57 \
+    --model_id h57_168_$pred_len \
     --model $model_name \
     --data custom \
     --features MS \
@@ -38,6 +38,7 @@ do
     --e_layers $e_layers \
     --d_layers 1 \
     --factor 3 \
+    --dropout 0.18 \
     --top_k 3 \
     --enc_in $f \
     --dec_in $f \

@@ -11,7 +11,7 @@ for pred_len in 24 168
 do
     python -u run.py \
       --task_name long_term_forecast \
-      --is_training 1 \
+      --is_training 0 \
       --root_path $root_path \
       --data_path $data_path \
       --model_id $model_id_name_$seq_len'_'$pred_len \
