@@ -17,6 +17,7 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
+  --patience 10 \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
@@ -41,6 +42,7 @@ python -u run.py \
   --e_layers 2 \
   --d_layers 1 \
   --factor 3 \
+  --patience 10 \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
