@@ -21,9 +21,10 @@ python -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'ExpPS' \
+  --des 'ExpPS6' \
   --itr 1 \
   --n_heads 4 \
+  --ps_lambda 6.0 \
   --use_ps_loss 1 \
   --head_or_projection 0
 
@@ -46,8 +47,9 @@ python -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'ExpPS' \
+  --des 'ExpPS6' \
   --itr 1 \
   --n_heads 4 \
+  --ps_lambda 6.0 \
   --use_ps_loss 1 \
   --head_or_projection 0

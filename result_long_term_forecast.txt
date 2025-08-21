@@ -328,3 +328,21 @@ mse:0.4821360409259796, mae:0.5085045099258423, mape_i:0.263742059469223
 h57_168_168_sl168_pl168__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS_0  
 mse:0.564764678478241, mae:0.5443754196166992, mape_i:0.2732108235359192
 
+h57_168_24_sl168_pl24__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS6_0  
+mse:0.48204556107521057, mae:0.5103201270103455, mape_i:0.265846312046051
+
+h57_168_168_sl168_pl168__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS6_0  
+mse:0.5617278218269348, mae:0.5433754324913025, mape_i:0.2731465697288513
+
+weather_sl96_pl96__AMPTST_custom_ftM_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.17177873849868774, mae:0.22136738896369934, mape_i:2158626.25
+
+weather_sl96_pl192__AMPTST_custom_ftM_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.21941478550434113, mae:0.2627136707305908, mape_i:2475059.5
+
+weather_sl96_pl336__AMPTST_custom_ftM_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.2760220170021057, mae:0.30167195200920105, mape_i:2203428.75
+
+weather_sl96_pl720__AMPTST_custom_ftM_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.365416944026947, mae:0.3615249991416931, mape_i:2241286.75
+

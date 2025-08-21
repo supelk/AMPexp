@@ -1,11 +1,4 @@
 export CUDA_VISIBLE_DEVICES=0
-if [ ! -d "./logs" ]; then
-    mkdir ./logs
-fi
-
-if [ ! -d "./logs/AMPTST/public_data" ]; then
-    mkdir ./logs/AMPTST/public_data
-fi
 model_name=AMPTST
 
 seq_len=96
@@ -19,7 +12,7 @@ train_epochs=20
 patience=10
 f=21
 data_path=weather.csv
-des=CMk5ps1_16bs128
+des=CM
 for pred_len in 96 192 336 720
 do
   python -u run.py \
@@ -56,8 +49,5 @@ do
     --down_sampling_layers $down_sampling_layers \
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
-    --pf 0 \
-    --ps_lambda 16.0 \
-    --use_ps_loss 1 \
-    --head_or_projection 1
+    --pf 0
 done
