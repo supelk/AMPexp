@@ -156,6 +156,9 @@ if __name__ == '__main__':
     parser.add_argument('--kernel_size', type=int, default=25.0, help='decomposition-kernel for lstm')
     parser.add_argument('--decompsition', type=bool, default=False, help='decomposition or not for lstm ')
     parser.add_argument('--individual', type=bool, default=False, help='individual or not for lstm ')
+
+    #result folder
+    parser.add_argument('--result_path', type=str, default='A1', help='result show path')
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:
         args.device = torch.device('cuda:{}'.format(args.gpu))

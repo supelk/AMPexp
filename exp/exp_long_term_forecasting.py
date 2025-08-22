@@ -18,7 +18,7 @@ warnings.filterwarnings('ignore')
 class Exp_Long_Term_Forecast(Exp_Basic):
     def __init__(self, args):
         super(Exp_Long_Term_Forecast, self).__init__(args)
-
+        self.result_path = args.result_path
         self.ps_lambda = args.ps_lambda
         self.use_ps_loss = args.use_ps_loss
         self.patch_len_threshold = args.patch_len_threshold
@@ -292,7 +292,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         if test_data.scale and self.args.inverse:
             preds_inverse = []
             trues_inverse = []
-        folder_path = './test_results/' + setting + '/'
+        folder_path = './test_results/' + setting + '/' + self.result_path + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
