@@ -322,12 +322,6 @@ mse:0.4821360409259796, mae:0.5085045099258423, mape_i:0.263742059469223
 h57_168_168_sl168_pl168__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS_0  
 mse:0.564764678478241, mae:0.5443754196166992, mape_i:0.2732108235359192
 
-h57_168_24_sl168_pl24__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS_0  
-mse:0.4821360409259796, mae:0.5085045099258423, mape_i:0.263742059469223
-
-h57_168_168_sl168_pl168__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS_0  
-mse:0.564764678478241, mae:0.5443754196166992, mape_i:0.2732108235359192
-
 h57_168_24_sl168_pl24__PatchTST_custom_ftMS_ll48_dm512_nh4_el2_dl1_df2048_fc3_ebtimeF_dtTrue_ExpPS6_0  
 mse:0.48204556107521057, mae:0.5103201270103455, mape_i:0.265846312046051
 
@@ -399,4 +393,55 @@ mse:0.5434868335723877, mae:0.5298449993133545, mape_i:0.26256364583969116
 
 h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_10.0_0  
 mse:0.5021035671234131, mae:0.5082351565361023, mape_i:0.25936663150787354
+
+weather_96_96_sl96_pl96__TimeMixer_custom_ftM_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.1613789051771164, mae:0.20878279209136963, mape_i:1959810.75
+
+weather_96_192_sl96_pl192__TimeMixer_custom_ftM_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.2100554257631302, mae:0.25266245007514954, mape_i:1821301.5
+
+h57_168_24_sl168_pl24__TimeMixer_custom_ftMS_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.4916607141494751, mae:0.5094634890556335, mape_i:0.2624320685863495
+
+h57_168_168_sl168_pl168__TimeMixer_custom_ftMS_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5416206121444702, mae:0.5371471643447876, mape_i:0.2734088599681854
+
+h57_168_24_sl168_pl24__TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_ExpPS_0  
+mse:0.46601545810699463, mae:0.5046943426132202, mape_i:0.264716774225235
+
+h57_168_24_sl168_pl168__TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_ExpPS_0  
+mse:0.5553615093231201, mae:0.5438516736030579, mape_i:0.2662893831729889
+
+h57_168_24_sl168_pl24__iTransformer_custom_ftMS_ll48_dm512_nh8_el3_dl1_df512_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.45737093687057495, mae:0.4928828179836273, mape_i:0.2592337429523468
+
+h57_168_168_sl168_pl168__iTransformer_custom_ftMS_ll48_dm512_nh8_el3_dl1_df512_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5714103579521179, mae:0.5514417290687561, mape_i:0.274702787399292
+
+168_24_sl168_pl24__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_ExpPS_0  
+mse:0.46740344166755676, mae:0.5005480647087097, mape_i:0.2684473991394043
+
+168_168_sl168_pl168__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_ExpPS_0  
+mse:0.5442179441452026, mae:0.5351970195770264, mape_i:0.2750271260738373
+
+h57_168_24_sl168_pl24__TimeMixer_custom_ftMS_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_ExpPS6_0  
+mse:0.5010772943496704, mae:0.5219197273254395, mape_i:0.26948681473731995
+
+h57_168_24_sl168_pl24__TimeMixer_custom_ftMS_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_ExpPS9_0  
+mse:0.4830767512321472, mae:0.5060473680496216, mape_i:0.2617989182472229
+
+h57_168_168_sl168_pl168__TimeMixer_custom_ftMS_ll0_dm16_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_ExpPS6_0  
+mse:0.5612847805023193, mae:0.54360431432724, mape_i:0.2727373242378235 n
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm8_nh4_el3_dl1_df16_fc3_ebtimeF_dtTrue_onlyperiod_0  
+mse:0.4564075469970703, mae:0.49243462085723877, mape_i:0.26434457302093506
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm8_nh4_el3_dl1_df16_fc3_ebtimeF_dtTrue_onlyperiod_0  
+mse:0.6637803316116333, mae:0.5990580320358276, mape_i:0.28765055537223816
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm8_nh4_el3_dl1_df16_fc3_ebtimeF_dtTrue_onlyperiod_0  
+mse:0.4749261736869812, mae:0.5014002919197083, mape_i:0.2636878490447998
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm8_nh4_el3_dl1_df16_fc3_ebtimeF_dtTrue_onlyperiod_0  
+mse:0.6638755202293396, mae:0.5979255437850952, mape_i:0.2884458601474762
 
