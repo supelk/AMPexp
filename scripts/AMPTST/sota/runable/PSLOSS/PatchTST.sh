@@ -22,6 +22,7 @@ do
     --enc_in $f \
     --dec_in $f \
     --c_out $f \
+    --batch_size 16 \
     --des 'ExpPS2' \
     --itr 1 \
     --n_heads 4 \
