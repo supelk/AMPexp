@@ -13,14 +13,14 @@ e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
 learning_rate=0.01
-d_model=32
-d_ff=32
+d_model=512
+d_ff=512
 train_epochs=20
 patience=10
 f=862
 data_path=traffic.csv
-des=CMdefault
-for pred_len in 96 192 336 720
+des=CMdefault_k5
+for pred_len in 96 192
 do
   python -u run.py \
     --task_name long_term_forecast \
@@ -39,7 +39,7 @@ do
     --e_layers $e_layers \
     --d_layers 1 \
     --factor 3 \
-    --top_k 3 \
+    --top_k 5 \
     --enc_in $f \
     --dec_in $f \
     --c_out $f \
@@ -48,7 +48,7 @@ do
     --d_model $d_model \
     --d_ff $d_ff \
     --moving_avg 25 \
-    --batch_size 16 \
+    --batch_size 128 \
     --learning_rate $learning_rate \
     --train_epochs $train_epochs \
     --patience $patience \

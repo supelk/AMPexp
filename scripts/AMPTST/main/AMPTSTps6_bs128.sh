@@ -1,7 +1,14 @@
 export CUDA_VISIBLE_DEVICES=0
+if [ ! -d "./logs" ]; then
+    mkdir ./logs
+fi
+
+if [ ! -d "./logs/AMPTST/main" ]; then
+    mkdir ./logs/AMPTST/main
+fi
 model_name=AMPTST
 
-seq_len=96
+seq_len=168
 e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
@@ -10,21 +17,20 @@ d_model=32
 d_ff=32
 train_epochs=20
 patience=10
-f=21
-data_path=weather.csv
-des=CMdefault
-for pred_len in 96 192
+f=57
+data_path=h57.csv
+des=CM_psloss1_6-projection_bs128
+for pred_len in 24 48 96 168
 do
   python -u run.py \
     --task_name long_term_forecast \
-    --is_training 0 \
-    --root_path ./dataset/weather/ \
+    --is_training 1 \
+    --root_path ./dataset/mydata_v1/ \
     --data_path $data_path \
-    --model_id weather \
+    --model_id h57 \
     --model $model_name \
     --data custom \
-    --features M \
-    --checkpoints ./checkpoints/publicdata \
+    --features MS \
     --seq_len $seq_len \
     --label_len 0 \
     --pred_len $pred_len \
@@ -32,7 +38,7 @@ do
     --e_layers $e_layers \
     --d_layers 1 \
     --factor 3 \
-    --top_k 5 \
+    --top_k 3 \
     --enc_in $f \
     --dec_in $f \
     --c_out $f \
@@ -41,7 +47,7 @@ do
     --d_model $d_model \
     --d_ff $d_ff \
     --moving_avg 25 \
-    --batch_size 32 \
+    --batch_size 128 \
     --learning_rate $learning_rate \
     --train_epochs $train_epochs \
     --patience $patience \
@@ -49,5 +55,8 @@ do
     --down_sampling_layers $down_sampling_layers \
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
-    --pf 0
+    --pf 0 \
+    --ps_lambda 6.0 \
+    --use_ps_loss 1 \
+    --head_or_projection 2
 done

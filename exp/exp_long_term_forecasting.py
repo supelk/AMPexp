@@ -134,18 +134,18 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         # Gradiant based dynamic weighting
         # AMPTST, Patch_TST
-        # if self.args.head_or_projection == 0:
-        #     corr_gradient = torch.autograd.grad(corr_loss, self.model.head.parameters(), create_graph=True)[0]
-        #     var_gradient = torch.autograd.grad(var_loss, self.model.head.parameters(), create_graph=True)[0]
-        #     mean_gradient = torch.autograd.grad(mean_loss, self.model.head.parameters(), create_graph=True)[0]
-        # else:
-        #     corr_gradient = torch.autograd.grad(corr_loss, self.model.projection.parameters(), create_graph=True)[0]
-        #     var_gradient = torch.autograd.grad(var_loss, self.model.projection.parameters(), create_graph=True)[0]
-        #     mean_gradient = torch.autograd.grad(mean_loss, self.model.projection.parameters(), create_graph=True)[0]
+        if self.args.head_or_projection == 0:
+            corr_gradient = torch.autograd.grad(corr_loss, self.model.head.parameters(), create_graph=True)[0]
+            var_gradient = torch.autograd.grad(var_loss, self.model.head.parameters(), create_graph=True)[0]
+            mean_gradient = torch.autograd.grad(mean_loss, self.model.head.parameters(), create_graph=True)[0]
+        else:
+            corr_gradient = torch.autograd.grad(corr_loss, self.model.projection.parameters(), create_graph=True)[0]
+            var_gradient = torch.autograd.grad(var_loss, self.model.projection.parameters(), create_graph=True)[0]
+            mean_gradient = torch.autograd.grad(mean_loss, self.model.projection.parameters(), create_graph=True)[0]
         # TimeMixer
-        corr_gradient = torch.autograd.grad(corr_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
-        var_gradient = torch.autograd.grad(var_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
-        mean_gradient = torch.autograd.grad(mean_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
+        # corr_gradient = torch.autograd.grad(corr_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
+        # var_gradient = torch.autograd.grad(var_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
+        # mean_gradient = torch.autograd.grad(mean_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
         # TimesNet iTransformer
         # corr_gradient = torch.autograd.grad(corr_loss, self.model.projection.parameters(), create_graph=True)[0]
         # var_gradient = torch.autograd.grad(var_loss, self.model.projection.parameters(), create_graph=True)[0]
@@ -397,8 +397,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         else:
             dtw = 'Not calculated'
 
-        mae, mse, rmse, mape, mspe = metric(preds, trues)
-        mae_i, mse_i, rmse_i, mape_i, mspe_i = metric(preds_inverse, trues_inverse)
+        mae, mse, rmse, mape, mspe, r2 = metric(preds, trues)
+        mae_i, mse_i, rmse_i, mape_i, mspe_i, r2_i = metric(preds_inverse, trues_inverse)
         print('mse:{}, mae:{}, mape_i:{}'.format(mse, mae, mape_i))
         f = open("result_long_term_forecast.txt", 'a')
         f.write(setting + "  \n")
@@ -406,7 +406,8 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         f.write('\n')
         f.write('\n')
         f.close()
-        np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape_i, mspe]))
+        # np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape_i, mspe]))
+        np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe, r2, mae_i, mse_i, rmse_i, mape_i, mspe_i, r2_i]))
         if self.args.storage_result:
             np.save(folder_path + 'pred.npy', preds_inverse)
             np.save(folder_path + 'true.npy', trues_inverse)
