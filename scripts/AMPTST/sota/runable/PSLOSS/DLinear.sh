@@ -23,9 +23,9 @@ do
       --dropout 0.1\
       --train_epochs 20\
       --patience 10\
-      --des 'ExpPS2_withsamehyperparameter' \
+      --des 'Exp_PS10_withsamehyperparameter' \
       --itr 1 \
       --learning_rate 0.01 \
-      --ps_lambda 2.0 \
+      --ps_lambda 10.0 \
       --use_ps_loss 1
 done

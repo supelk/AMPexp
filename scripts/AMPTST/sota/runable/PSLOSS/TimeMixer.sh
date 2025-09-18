@@ -33,7 +33,7 @@ do
     --enc_in $f \
     --dec_in $f \
     --c_out $f \
-    --des 'ExpPS2_withsamehyperparameter' \
+    --des 'Exp_PS10_withsamehyperparameter' \
     --itr 1 \
     --d_model $d_model \
     --d_ff $d_ff \
@@ -44,7 +44,7 @@ do
     --down_sampling_layers $down_sampling_layers \
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
-    --ps_lambda 2.0 \
+    --ps_lambda 10.0 \
     --use_ps_loss 1
 done
 

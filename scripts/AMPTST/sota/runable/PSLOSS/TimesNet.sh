@@ -26,9 +26,9 @@ python -u run.py \
   --learning_rate 0.01 \
   --top_k 5 \
   --batch_size 16 \
-  --des 'Exp_PS2_withsamehyperparameter' \
+  --des 'Exp_PS10_withsamehyperparameter' \
   --itr 1 \
-  --ps_lambda 2.0 \
+  --ps_lambda 10.0 \
   --use_ps_loss 1 \
   --head_or_projection 1
 done

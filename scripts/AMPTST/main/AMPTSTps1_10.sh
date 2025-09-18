@@ -19,7 +19,7 @@ train_epochs=20
 patience=10
 f=57
 data_path=h57.csv
-des=CM_psloss1_2
+des=CM_psloss1_10
 for pred_len in 24 48 96 168
 do
   python -u run.py \
@@ -58,5 +58,5 @@ do
     --pf 0 \
     --ps_lambda 10.0 \
     --use_ps_loss 1 \
-    --head_or_projection 0
+    --head_or_projection 1
 done
