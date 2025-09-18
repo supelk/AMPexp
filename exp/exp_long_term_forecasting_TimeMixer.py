@@ -133,27 +133,12 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         var_sim = (2 * true_std * pred_std + 1e-5) / (true_var + pred_var + 1e-5)
 
         # Gradiant based dynamic weighting
-        # AMPTST, Patch_TST (TimesNet iTransformer default should be 1)
-        if self.args.head_or_projection == 0:
-            corr_gradient = torch.autograd.grad(corr_loss, self.model.head.parameters(), create_graph=True)[0]
-            var_gradient = torch.autograd.grad(var_loss, self.model.head.parameters(), create_graph=True)[0]
-            mean_gradient = torch.autograd.grad(mean_loss, self.model.head.parameters(), create_graph=True)[0]
-        else:
-            corr_gradient = torch.autograd.grad(corr_loss, self.model.projection.parameters(), create_graph=True)[0]
-            var_gradient = torch.autograd.grad(var_loss, self.model.projection.parameters(), create_graph=True)[0]
-            mean_gradient = torch.autograd.grad(mean_loss, self.model.projection.parameters(), create_graph=True)[0]
+
         # TimeMixer
-        # corr_gradient = torch.autograd.grad(corr_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
-        # var_gradient = torch.autograd.grad(var_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
-        # mean_gradient = torch.autograd.grad(mean_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
-        # TimesNet iTransformer
-        # corr_gradient = torch.autograd.grad(corr_loss, self.model.projection.parameters(), create_graph=True)[0]
-        # var_gradient = torch.autograd.grad(var_loss, self.model.projection.parameters(), create_graph=True)[0]
-        # mean_gradient = torch.autograd.grad(mean_loss, self.model.projection.parameters(), create_graph=True)[0]
-        # DLinear
-        # corr_gradient = torch.autograd.grad(corr_loss, self.model.Linear_Trend.parameters(), create_graph=True)[0]
-        # var_gradient = torch.autograd.grad(var_loss, self.model.Linear_Trend.parameters(), create_graph=True)[0]
-        # mean_gradient = torch.autograd.grad(mean_loss, self.model.Linear_Trend.parameters(), create_graph=True)[0]
+        corr_gradient = torch.autograd.grad(corr_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
+        var_gradient = torch.autograd.grad(var_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
+        mean_gradient = torch.autograd.grad(mean_loss, self.model.predict_layers[-1].parameters(), create_graph=True)[0]
+
         gradiant_avg = (corr_gradient + var_gradient + mean_gradient) / 3.0
 
         aplha = gradiant_avg.norm().detach() / corr_gradient.norm().detach()

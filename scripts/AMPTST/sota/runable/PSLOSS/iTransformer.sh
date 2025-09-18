@@ -28,13 +28,14 @@ python  -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'Exp_PS2' \
+  --des 'Exp_PS2_withsamehyperparameter' \
   --batch_size 16 \
-  --d_model 512\
-  --d_ff 512\
+  --d_model 32 \
+  --d_ff 32 \
+  --learning_rate 0.01 \
   --itr 1 \
   --ps_lambda 2.0 \
   --use_ps_loss 1 \
-  --head_or_projection 0
+  --head_or_projection 1
 done
 

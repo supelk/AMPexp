@@ -20,7 +20,7 @@ patience=10
 f=57
 data_path=h57.csv
 des=CM_psloss1_2
-for pred_len in 168
+for pred_len in 24 48 96 168
 do
   python -u run.py \
     --task_name long_term_forecast \
