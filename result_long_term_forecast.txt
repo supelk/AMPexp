@@ -708,3 +708,27 @@ mse:0.4986059367656708, mae:0.5207210183143616, mape_i:0.27664345502853394
 
 -------------------------------------------------------------------------------------- same hyperparameter , ps_weight 10,projection
 
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_10_0  
+mse:0.44412901997566223, mae:0.48444506525993347, mape_i:0.262381911277771
+
+h57_sl168_pl48__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_10_0  
+mse:0.4690351188182831, mae:0.4949793219566345, mape_i:0.2595684826374054
+
+h57_sl168_pl96__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_10_0  
+mse:0.4938451647758484, mae:0.5075401663780212, mape_i:0.26538220047950745
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_psloss1_10_0  
+mse:0.5779947638511658, mae:0.5556254386901855, mape_i:0.2705826759338379
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.46705949306488037, mae:0.5017914175987244, mape_i:0.2731202244758606
+
+h57_sl168_pl48__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.5122273564338684, mae:0.5295813083648682, mape_i:0.2850365936756134
+
+h57_sl168_pl96__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.5881406664848328, mae:0.5798398852348328, mape_i:0.33458054065704346
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.5339370369911194, mae:0.5470113754272461, mape_i:0.30105650424957275
+
