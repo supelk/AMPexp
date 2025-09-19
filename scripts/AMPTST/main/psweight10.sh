@@ -22,7 +22,7 @@ patience=10
 f=57
 data_path=h57.csv
 des=CM
-for pred_len in 24 168
+for pred_len in 48 96
 do
   for ps_lambda in ${ps_lambdas[@]}
   do
