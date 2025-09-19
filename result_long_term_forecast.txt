@@ -753,3 +753,102 @@ mse:0.5338663458824158, mae:0.534673810005188, mape_i:0.2762942910194397
 h57_168_96_sl168_pl96__iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
 mse:0.5581797361373901, mae:0.5439864993095398, mape_i:0.2692831754684448
 
+h57_168_168_sl168_pl168__iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.5896866917610168, mae:0.5614200830459595, mape_i:0.2866748869419098
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.1_0  
+mse:0.4451417028903961, mae:0.4867103695869446, mape_i:0.2612227201461792
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.3_0  
+mse:0.44585487246513367, mae:0.49173468351364136, mape_i:0.26546189188957214
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.5_0  
+mse:0.4566373825073242, mae:0.4915267527103424, mape_i:0.26248660683631897
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.7_0  
+mse:0.4536159634590149, mae:0.4915570318698883, mape_i:0.2636752426624298
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_1.0_0  
+mse:0.45704928040504456, mae:0.49649307131767273, mape_i:0.26525169610977173
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_2.0_0  
+mse:0.4400365650653839, mae:0.4791388511657715, mape_i:0.25540295243263245
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_5.0_0  
+mse:0.44022291898727417, mae:0.48297202587127686, mape_i:0.258868932723999
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_7.0_0  
+mse:0.4459107220172882, mae:0.48325714468955994, mape_i:0.2565830647945404
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_10.0_0  
+mse:0.4509235620498657, mae:0.4811975955963135, mape_i:0.2542188763618469
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.1_0  
+mse:0.553398847579956, mae:0.54886394739151, mape_i:0.29845574498176575
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.3_0  
+mse:0.561572253704071, mae:0.5468078255653381, mape_i:0.2775631844997406
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.5_0  
+mse:0.5692708492279053, mae:0.5617715120315552, mape_i:0.30713799595832825
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_0.7_0  
+mse:0.5674368143081665, mae:0.5564978122711182, mape_i:0.27959126234054565
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_1.0_0  
+mse:0.5262132883071899, mae:0.5397157073020935, mape_i:0.3007792532444
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_2.0_0  
+mse:0.5039029717445374, mae:0.5151264071464539, mape_i:0.2759229838848114
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_5.0_0  
+mse:0.5680527091026306, mae:0.5426875352859497, mape_i:0.26463374495506287
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_7.0_0  
+mse:0.5434868335723877, mae:0.5298449993133545, mape_i:0.26256364583969116
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_10.0_0  
+mse:0.5021035671234131, mae:0.5082351565361023, mape_i:0.25936663150787354
+
+h57_168_24_sl168_pl24__PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperm_0
+mse:0.4669418931007385, mae:0.4960404932498932, mape_i:0.25888746976852417
+
+h57_168_48_sl168_pl48__PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperm_0  
+mse:0.4955282509326935, mae:0.5116540789604187, mape_i:0.26909303665161133
+
+h57_168_96_sl168_pl96__PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperm_0  
+mse:0.5595027208328247, mae:0.5372439026832581, mape_i:0.2669694721698761
+
+h57_168_168_sl168_pl168__PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperm_0  
+mse:0.5550714135169983, mae:0.5384002923965454, mape_i:0.272978812456131
+
+168_24_sl168_pl24__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.4702659547328949, mae:0.5072100758552551, mape_i:0.2721644639968872
+
+168_48_sl168_pl48__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.4977871775627136, mae:0.5197516083717346, mape_i:0.27510178089141846
+
+168_96_sl168_pl96__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.5334332585334778, mae:0.5332739353179932, mape_i:0.2769905626773834
+
+h57_sl168_pl24__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_10_1_0  
+mse:0.44461318850517273, mae:0.48345452547073364, mape_i:0.25684627890586853
+
+168_168_sl168_pl168__DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.552699625492096, mae:0.5403733253479004, mape_i:0.27656885981559753
+
+h57_168_24_sl168_pl24__TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.4838806092739105, mae:0.510999321937561, mape_i:0.2804732024669647
+
+h57_sl168_pl168__AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_10_1_0  
+mse:0.5146518349647522, mae:0.5169283151626587, mape_i:0.264207661151886
+
+h57_168_48_sl168_pl48__TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.5430154204368591, mae:0.5459593534469604, mape_i:0.3038470447063446
+
+h57_168_96_sl168_pl96__TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.5475537776947021, mae:0.5369493961334229, mape_i:0.2697635293006897
+
+h57_168_168_sl168_pl168__TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_PS10_withsamehyperparameter_0  
+mse:0.557198166847229, mae:0.5485230684280396, mape_i:0.28242775797843933
+
