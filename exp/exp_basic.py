@@ -3,7 +3,8 @@ import torch
 from models import Autoformer, Transformer, TimesNet, Nonstationary_Transformer, DLinear, FEDformer, \
     Informer, LightTS, Reformer, ETSformer, Pyraformer, PatchTST, MICN, Crossformer, FiLM, iTransformer, \
     Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, TemporalFusionTransformer, SCINet, PAttn, TimeXer, \
-    WPMixer, MultiPatchFormer, MPTST, AMPTST, TSTDLSTM
+    WPMixer, MultiPatchFormer, MPTST, TSTDLSTM
+from models import AMPTST_v1 as AMPTST
 
 
 class Exp_Basic(object):
