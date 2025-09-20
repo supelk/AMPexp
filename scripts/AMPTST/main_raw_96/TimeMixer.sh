@@ -20,7 +20,7 @@ do
     --is_training 1 \
     --root_path ./dataset/mydata/ \
     --data_path h57.csv \
-    --model_id h57_$seq_len_$pred_len \
+    --model_id h57 \
     --model $model_name \
     --data custom \
     --features MS \
@@ -33,7 +33,7 @@ do
     --enc_in $f \
     --dec_in $f \
     --c_out $f \
-    --des 'Exp_PS10_withsamehyperparameter' \
+    --des 'Exp' \
     --itr 1 \
     --d_model $d_model \
     --d_ff $d_ff \

@@ -9,7 +9,7 @@ do
     --is_training 1 \
     --root_path ./dataset/mydata_v1/ \
     --data_path h57.csv \
-    --model_id h57_$seq_len_$pred_len \
+    --model_id h57 \
     --model $model_name \
     --data custom \
     --features MS \
@@ -27,7 +27,7 @@ do
     --c_out $f \
     --batch_size 16 \
     --learning_rate 0.01 \
-    --des 'Exp_PS10_withsamehyperm' \
+    --des 'Exp' \
     --itr 1 \
     --n_heads 4 \
     --ps_lambda 10.0 \

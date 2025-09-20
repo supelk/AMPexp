@@ -9,7 +9,7 @@ python -u run.py \
   --is_training 1 \
   --root_path ./dataset/mydata/ \
   --data_path h57.csv \
-  --model_id h57_$seq_len_$pred_len \
+  --model_id h57 \
   --model $model_name \
   --data custom \
   --features MS \
@@ -27,7 +27,7 @@ python -u run.py \
   --learning_rate 0.01 \
   --top_k 5 \
   --batch_size 16 \
-  --des 'Exp_PS10_withsamehyperparameter' \
+  --des 'Exp' \
   --itr 1 \
   --ps_lambda 10.0 \
   --use_ps_loss 0 \

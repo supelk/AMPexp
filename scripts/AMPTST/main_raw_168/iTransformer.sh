@@ -16,7 +16,7 @@ python  -u run.py \
   --is_training 1 \
   --root_path ./dataset/mydata/ \
   --data_path h57.csv \
-  --model_id h57_$seq_len_$pred_len \
+  --model_id h57 \
   --model $model_name \
   --data custom \
   --features MS \
@@ -29,7 +29,7 @@ python  -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'Exp_PS10_withsamehyperparameter' \
+  --des 'Exp' \
   --batch_size 16 \
   --d_model 32 \
   --d_ff 32 \

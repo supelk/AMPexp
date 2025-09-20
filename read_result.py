@@ -1,68 +1,95 @@
 #!/usr/bin/env python3
+"""
+一键把实验结果 txt 解析并写入 MySQL
+用法:  python load_results.py  [results.txt]
+"""
 import os
 import re
+import sys
 import pymysql
-from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv()
-
+# ---------- 数据库配置 ----------
 DB_CFG = dict(
-    host=os.getenv('DB_HOST'),
-    port=int(os.getenv('DB_PORT')),
-    user=os.getenv('DB_USER'),
-    password=os.getenv('DB_PASS'),
-    database=os.getenv('DB_NAME'),
+    host='127.0.0.1',
+    port=3306,
+    user='root',
+    password='supelk',   # 改成你的
+    database='amptst_result',
     charset='utf8mb4'
 )
 
-BLOCK_SEP = re.compile(r'\n\s*\n')          # 空行分块
-PARAM_RE  = re.compile(r'(?P<key>[a-z]+)(?P<val>\d+)', re.I)  # 提取 xx_nn
+# ---------- 正则 ----------
+# BLOCK_SEP = re.compile(r'\n\s*\n')
+# BLOCK_SEP = re.compile(r'(?:\r?\n){2,}')
+BLOCK_SEP = re.compile(r'(?:\r?\n)\s*(?:\r?\n)')  # 一个空行即可，兼容 CRLF
 METRIC_RE = re.compile(r'(mse|mae|mape_i):([\d\.e\-]+)', re.I)
+TOKEN_RE  = re.compile(r'([a-z]+)(\d+|[A-Z][a-z]*)', re.I)  # 字母+数字/True/False
 
+# ---------- 解析 ----------
 def parse_block(block: str):
-    """返回 dict，key 与表字段对应；解析失败返回 None"""
+    print('【RAW BLOCK】', repr(block))
     lines = [L.strip() for L in block.splitlines() if L.strip()]
     if len(lines) != 2:
         return None
     param_line, metric_line = lines
 
-    # 1. 解析参数
-    params = {}
-    for m in PARAM_RE.finditer(param_line):
-        key, val = m.group('key'), int(m.group('val'))
-        params[key] = val
-    # 特殊布尔值 distil
-    params['dt'] = 'dtTrue' in param_line
+    parts = param_line.split('_')
+    print('【PARTS】', len(parts), parts)
+    print('【metric_line】', repr(metric_line))
+    # if len(parts) != 15:          # 期望正好 15 段
+    #     return None
 
-    # 2. 解析指标
-    metrics = {}
+    # 字段映射表：idx -> (字段名, 转换函数)
+    mapping = {
+        0:  ('dataset',  lambda v: v),
+        1:  ('sl',       int),
+        2:  ('pl',       int),
+        3:  ('model',    lambda v: v),
+        5:  ('ft',       lambda v: v),
+        6:  ('ll',       int),
+        7:  ('dm',       int),
+        8:  ('nh',       int),
+        9:  ('el',       int),
+        10: ('dl',       int),
+        11: ('df',       int),
+        12: ('fc',       int),
+        13: ('ebtime',   lambda v: v),
+        14: ('describe_',lambda v: v),
+    }
+
+    row = {}
+    for idx, (field, caster) in mapping.items():
+        raw = parts[idx]
+        m = TOKEN_RE.fullmatch(raw)
+        val = m.group(2) if m else raw
+        row[field] = caster(val)
+
+    # 特殊处理 dtTrue
+    row['dt'] = 'dtTrue' in param_line
+
+    # 解析指标
     for m in METRIC_RE.finditer(metric_line):
-        metrics[m.group(1).lower()] = float(m.group(2))
+        row[m.group(1).lower()] = float(m.group(2))
 
-    # 3. 合并
-    row = {**params, **metrics}
-    # 检查必要字段
-    need_cols = {'h','sl','pl','mse','mae','mape_i'}
-    if not need_cols.issubset(row):
-        return None
-    return row
+    need = {'dataset','sl','pl','mse','mae','mape_i'}
+    return row if need.issubset(row) else None
 
+# ---------- 批量写入 ----------
 def insert_many(rows):
-    """批量写入，冲突则忽略"""
     if not rows:
         return
-    cols = ['h','sl','pl','model','ft','ll','dm','nh','el','dl','df','fc','ebtime','dt','cm',
-            'mse','mae','mape_i']
-    # 缺省字段补 NULL
+    cols = ['dataset','sl','pl','model','ft','ll','dm','nh','el','dl','df','fc',
+            'ebtime','dt','describe_','mse','mae','mape_i']
     for r in rows:
         for c in cols:
             r.setdefault(c, None)
     placeholders = ','.join(['%s']*len(cols))
-    update_part  = ','.join([f'{c}=VALUES({c})' for c in cols if c not in {'h','sl','pl','model','ft','ll','dm','nh','el','dl','df','fc','ebtime','dt','cm'}])
+    upd = ','.join([f'{c}=VALUES({c})' for c in ['mse','mae','mape_i']])
     sql = f"""
-    INSERT INTO exp_results_t1 ({','.join(cols)})
+    INSERT INTO exp_results_t3 ({','.join(cols)})
     VALUES ({placeholders})
-    ON DUPLICATE KEY UPDATE {update_part}
+    ON DUPLICATE KEY UPDATE {upd}
     """
     args = [[row[c] for c in cols] for row in rows]
     with pymysql.connect(**DB_CFG) as conn:
@@ -70,13 +97,25 @@ def insert_many(rows):
             cur.executemany(sql, args)
         conn.commit()
 
-def main(file_path='./result_v1.txt'):
-    with open(file_path, encoding='utf-8') as f:
+# ---------- 主流程 ----------
+def main(txt_path: str):
+    with open(txt_path, encoding='utf-8') as f:
         content = f.read()
     blocks = BLOCK_SEP.split(content)
     rows = [r for b in blocks if (r := parse_block(b))]
     insert_many(rows)
-    print(f'loaded {len(rows)} records into MySQL.')
+    print(f'>>> 成功写入 {len(rows)} 条记录')
 
 if __name__ == '__main__':
-    main()
+    # 在 main() 里插入调试
+    with open('result_v1.txt', encoding='utf-8') as f:
+        content = f.read()
+    blocks = BLOCK_SEP.split(content)
+    rows = [r for b in blocks if (r := parse_block(b))]
+    print('>>> 解析到记录数:', len(rows))  # ← 新增
+    print('>>> 样例:', rows[:2])  # ← 新增
+
+    # file = sys.argv[1] if len(sys.argv) > 1 else 'result_v1.txt'
+    # if not Path(file).exists():
+    #     sys.exit(f'文件不存在: {file}')
+    # main(file)
