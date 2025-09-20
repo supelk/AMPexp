@@ -26,7 +26,7 @@ do
   do
     python -u run.py \
       --task_name long_term_forecast \
-      --is_training 0 \
+      --is_training 1 \
       --root_path ./dataset/mydata_v1/ \
       --data_path $data_path \
       --model_id h57 \
