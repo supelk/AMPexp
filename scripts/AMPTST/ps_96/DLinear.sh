@@ -30,4 +30,5 @@ do
       --learning_rate 0.01 \
       --ps_lambda $ps_lambda \
       --use_ps_loss 1
+  done
 done

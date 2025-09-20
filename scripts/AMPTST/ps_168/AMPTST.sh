@@ -60,6 +60,6 @@ do
       --pf 0 \
       --ps_lambda $ps_lambda \
       --use_ps_loss 1 \
-      --head_or_projection 1 \
+      --head_or_projection 1 
     done
 done
