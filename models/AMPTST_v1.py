@@ -94,7 +94,7 @@ class AMPTST(nn.Module):
         for i,x in enumerate(x_list):
             # print(f"input of AMPSTS.block {x.shape}")
             B, T, N = x.size()
-            period_list, period_weight = FFT_for_Period(x, self.k)
+            period_list, period_weight = FFT_for_Period(x, self.k)  # 自适应周期
             res = []
             # seasons =[]
             # trends =[]
@@ -236,12 +236,12 @@ class Model(nn.Module):
                 x_list.append(x)
                 x_mark_list.append(x_mark)
         else:
-            for i, x in zip(range(len(x_enc)), x_enc, ):
+            for i, x in zip(range(len(x_enc)), x_enc, ):    # 对尺度序列进行投影
                 B, T, N = x.size()
                 x = self.normalize_layers[i](x, 'norm')
                 if self.channel_independence:
                     x = x.permute(0, 2, 1).contiguous().reshape(B * N, T, 1)
-                x = self.enc_embedding(x)  # [B*N,T,dm] or [B,T,dm]
+                x = self.enc_embedding(x)  # [B*N,T,dm] or [B,T,dm]   在特征维度上进行嵌入
                 x_list.append(x)  # [B*N,T,dm] or [B,T,dm]
         # print(f"len of x_list: {len(x_list)}")
         out_list = self.model(x_list)  # [B*N,T,dm] or [B,T,dm]

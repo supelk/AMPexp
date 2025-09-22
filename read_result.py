@@ -24,7 +24,7 @@ DB_CFG = dict(
 # BLOCK_SEP = re.compile(r'(?:\r?\n){2,}')
 BLOCK_SEP = re.compile(r'(?:\r?\n)\s*(?:\r?\n)')  # 一个空行即可，兼容 CRLF
 METRIC_RE = re.compile(r'(mse|mae|mape_i):([\d\.e\-]+)', re.I)
-TOKEN_RE  = re.compile(r'([a-z]+)(\d+|[A-Z][a-z]*)', re.I)  # 字母+数字/True/False
+TOKEN_RE  = re.compile(r'([a-z]+)(\d+|[A-Z][a-z]*)')  # 字母+数字/True/False
 
 # ---------- 解析 ----------
 def parse_block(block: str):
@@ -55,7 +55,8 @@ def parse_block(block: str):
         11: ('df',       int),
         12: ('fc',       int),
         13: ('ebtime',   lambda v: v),
-        14: ('describe_',lambda v: v),
+        14: ('dt',       lambda v: v),
+        15: ('describe_',lambda v: v),
     }
 
     row = {}
@@ -63,6 +64,7 @@ def parse_block(block: str):
         raw = parts[idx]
         m = TOKEN_RE.fullmatch(raw)
         val = m.group(2) if m else raw
+        print(val)
         row[field] = caster(val)
 
     # 特殊处理 dtTrue
@@ -87,7 +89,7 @@ def insert_many(rows):
     placeholders = ','.join(['%s']*len(cols))
     upd = ','.join([f'{c}=VALUES({c})' for c in ['mse','mae','mape_i']])
     sql = f"""
-    INSERT INTO exp_results_t3 ({','.join(cols)})
+    INSERT INTO exp_results_t4 ({','.join(cols)})
     VALUES ({placeholders})
     ON DUPLICATE KEY UPDATE {upd}
     """
@@ -108,14 +110,14 @@ def main(txt_path: str):
 
 if __name__ == '__main__':
     # 在 main() 里插入调试
-    with open('result_v1.txt', encoding='utf-8') as f:
-        content = f.read()
-    blocks = BLOCK_SEP.split(content)
-    rows = [r for b in blocks if (r := parse_block(b))]
-    print('>>> 解析到记录数:', len(rows))  # ← 新增
-    print('>>> 样例:', rows[:2])  # ← 新增
+    # with open('test.txt', encoding='utf-8') as f:
+    #     content = f.read()
+    # blocks = BLOCK_SEP.split(content)
+    # rows = [r for b in blocks if (r := parse_block(b))]
+    # print('>>> 解析到记录数:', len(rows))  # ← 新增
+    # print('>>> 样例:', rows[:2])  # ← 新增
 
-    # file = sys.argv[1] if len(sys.argv) > 1 else 'result_v1.txt'
-    # if not Path(file).exists():
-    #     sys.exit(f'文件不存在: {file}')
-    # main(file)
+    file = sys.argv[1] if len(sys.argv) > 1 else 'result_v1.txt'
+    if not Path(file).exists():
+        sys.exit(f'文件不存在: {file}')
+    main(file)
