@@ -5,7 +5,8 @@ import torch.fft
 from layers.Embed import Embedding_forAMPTST
 from layers.Transformer_EncDec import Encoder, EncoderLayer
 from layers.Autoformer_EncDec import series_decomp
-from layers.SelfAttention_Family import FullAttention, AttentionLayer
+from layers.SelfAttention_Family import AttentionLayer
+from layers.SelfAttention_Family import ProbAttention as FullAttention
 from layers.StandardNorm import Normalize
 
 class Transpose(nn.Module):
