@@ -9,7 +9,7 @@ fi
 f=57
 seq_len=168
 model_name=iTransformer
-ps_lambdas=(2.0 4.0 10.0)
+ps_lambdas=(6.0)
 for pred_len in 24 48 96 168
 do
   for ps_lambda in ${ps_lambdas[@]}

@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.fft
 from layers.Embed import Embedding_forAMPTST
-from layers.Transformer_EncDec import Encoder, EncoderLayer
+from layers.Transformer_EncDec import Encoder, EncoderLayer,ConvLayer
 from layers.Autoformer_EncDec import series_decomp
 from layers.SelfAttention_Family import AttentionLayer
 from layers.SelfAttention_Family import ProbAttention as FullAttention
@@ -65,6 +65,11 @@ class AMPTST(nn.Module):
                             activation=configs.activation
                         ) for l in range(self.layers)
                     ],
+                    [
+                        ConvLayer(
+                            configs.d_model
+                        ) for l in range(configs.e_layers - 1)
+                    ] if configs.distil and ('forecast' in configs.task_name) else None,
                     norm_layer=nn.Sequential(Transpose(1, 2), nn.BatchNorm1d(configs.d_model), Transpose(1, 2))
                 )
                 for _ in range(self.down_sampling_layers + 1)
@@ -84,6 +89,11 @@ class AMPTST(nn.Module):
                             activation=configs.activation
                         ) for l in range(self.layers)
                     ],
+                    [
+                        ConvLayer(
+                            configs.d_model
+                        ) for l in range(configs.e_layers - 1)
+                    ] if configs.distil and ('forecast' in configs.task_name) else None,
                     norm_layer=nn.Sequential(Transpose(1, 2), nn.BatchNorm1d(configs.d_model), Transpose(1, 2))
                 )
                 for _ in range(self.down_sampling_layers + 1)

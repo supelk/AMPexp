@@ -4,7 +4,7 @@ model_name=TimesNet
 ps_lambdas=(2.0 6.0 10.0)
 f=57
 seq_len=168
-for pred_len in 168
+for pred_len in 24 48 96 168
 do
   for ps_lambda in ${ps_lambdas[@]}
   do
