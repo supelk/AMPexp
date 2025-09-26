@@ -7,7 +7,7 @@ do
 python -u run.py \
   --task_name long_term_forecast \
   --is_training 1 \
-  --root_path ./dataset/mydata/ \
+  --root_path ./dataset/mydata_v1/ \
   --data_path h57.csv \
   --model_id h57 \
   --model $model_name \

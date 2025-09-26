@@ -6,7 +6,7 @@ seq_len=168
 e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
-learning_rate=0.001
+learning_rate=0.0001
 d_model=32
 d_ff=32
 batch_size=16
@@ -18,7 +18,7 @@ do
   python -u run.py \
     --task_name long_term_forecast \
     --is_training 1 \
-    --root_path ./dataset/mydata/ \
+    --root_path ./dataset/mydata_v1/ \
     --data_path h57.csv \
     --model_id h57 \
     --model $model_name \

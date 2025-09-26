@@ -604,3 +604,6 @@ mse:0.554878830909729, mae:0.5443630814552307, mape_i:0.2784879803657532
 h57_sl168_pl96_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
 mse:36921940.0, mae:5327.4462890625, mape_i:3026.33740234375
 
+h57_sl168_pl96_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.586937427520752, mae:0.5652621388435364, mape_i:0.2978636622428894
+
