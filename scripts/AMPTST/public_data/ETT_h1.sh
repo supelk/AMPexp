@@ -20,7 +20,7 @@ patience=10
 f=7
 data_path=ETTh1.csv
 des=CMdefault
-for pred_len in 96 192 336 720
+for pred_len in 96 192
 do
   python -u run.py \
     --task_name long_term_forecast \

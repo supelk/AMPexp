@@ -3,35 +3,34 @@ if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
 
-if [ ! -d "./logs/AMPTST/public_data" ]; then
-    mkdir ./logs/AMPTST/public_data
+if [ ! -d "./logs/AMPTST/main" ]; then
+    mkdir ./logs/AMPTST/main
 fi
-model_name=AMPTST
+model_name=AMPTST_CI
 
-seq_len=96
+seq_len=168
 e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
 learning_rate=0.01
-d_model=32
-d_ff=32
+d_model=57
+d_ff=57
 train_epochs=20
 patience=10
-f=8
-data_path=exchange_rate.csv
-des=CMdefault
-for pred_len in 96 192
+f=57
+data_path=h57.csv
+des=ablation-CI
+for pred_len in 24 48 96 168
 do
   python -u run.py \
     --task_name long_term_forecast \
     --is_training 1 \
-    --root_path ./dataset/exchange_rate/ \
+    --root_path ./dataset/mydata_v1/ \
     --data_path $data_path \
-    --model_id exchange_rate \
+    --model_id h57 \
     --model $model_name \
     --data custom \
-    --features M \
-    --checkpoints ./checkpoints/publicdata \
+    --features MS \
     --seq_len $seq_len \
     --label_len 0 \
     --pred_len $pred_len \
@@ -52,7 +51,7 @@ do
     --learning_rate $learning_rate \
     --train_epochs $train_epochs \
     --patience $patience \
-    --channel_independence 0 \
+    --channel_independence 1 \
     --down_sampling_layers $down_sampling_layers \
     --down_sampling_method avg \
     --down_sampling_window $down_sampling_window \
