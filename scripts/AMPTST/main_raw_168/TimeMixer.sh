@@ -13,7 +13,7 @@ batch_size=16
 train_epochs=20
 patience=10
 f=57
-for pred_len in 96
+for pred_len in 24 48 96 168
 do
   python -u run.py \
     --task_name long_term_forecast \

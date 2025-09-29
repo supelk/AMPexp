@@ -1,6 +1,6 @@
 seq_len=168
 model_name=DLinear
-ps_lambdas=(2.0 6.0 10.0)
+ps_lambdas=(10.0)
 root_path=./dataset/mydata_v1/
 data_path=h57.csv
 model_id_name=h57

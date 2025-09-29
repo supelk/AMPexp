@@ -1,7 +1,7 @@
 #export CUDA_VISIBLE_DEVICES=0
 sleep 3000
 model_name=TimeMixer
-ps_lambdas=(2.0 6.0 10.0)
+ps_lambdas=(10.0)
 seq_len=168
 e_layers=3
 down_sampling_layers=3

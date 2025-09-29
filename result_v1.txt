@@ -607,3 +607,105 @@ mse:36921940.0, mae:5327.4462890625, mape_i:3026.33740234375
 h57_sl168_pl96_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
 mse:0.586937427520752, mae:0.5652621388435364, mape_i:0.2978636622428894
 
+h57_sl168_pl24_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.4700200855731964, mae:0.5045248866081238, mape_i:0.27661117911338806
+
+h57_sl168_pl48_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.5268961787223816, mae:0.5434392094612122, mape_i:0.30026158690452576
+
+h57_sl168_pl96_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.587300717830658, mae:0.5778651237487793, mape_i:0.3281562030315399
+
+h57_sl168_pl168_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM_0  
+mse:0.5312603116035461, mae:0.5366734266281128, mape_i:0.2873465418815613
+
+h57_sl168_pl24_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_0  
+mse:0.47496065497398376, mae:0.5120521783828735, mape_i:0.27723097801208496
+
+h57_sl168_pl48_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_0  
+mse:0.5094040036201477, mae:0.5288965106010437, mape_i:0.2845401465892792
+
+h57_sl168_pl96_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_0  
+mse:0.5423035025596619, mae:0.5420363545417786, mape_i:0.2891952395439148
+
+h57_sl168_pl168_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_Exp_0  
+mse:0.5536585450172424, mae:0.5461155772209167, mape_i:0.28823620080947876
+
+h57_sl168_pl24_iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5263972878456116, mae:0.5352362990379333, mape_i:0.2796679735183716
+
+h57_sl168_pl48_iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5543309450149536, mae:0.547573447227478, mape_i:0.28600013256073
+
+h57_sl168_pl96_iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5549473166465759, mae:0.5468660593032837, mape_i:0.2820974290370941
+
+h57_sl168_pl168_iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.6398102045059204, mae:0.591574490070343, mape_i:0.3078729808330536
+
+h57_sl168_pl24_PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.4936254024505615, mae:0.5174461603164673, mape_i:0.27517634630203247
+
+h57_sl168_pl48_PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5177529454231262, mae:0.5281530022621155, mape_i:0.27846941351890564
+
+h57_sl168_pl96_PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5699926614761353, mae:0.550115168094635, mape_i:0.2811318337917328
+
+h57_sl168_pl168_PatchTST_custom_ftMS_ll48_dm32_nh4_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5951220989227295, mae:0.5618493556976318, mape_i:0.28054237365722656
+
+h57_sl168_pl24_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.49478623270988464, mae:0.5164921283721924, mape_i:0.2719123065471649
+
+h57_sl168_pl48_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5330063104629517, mae:0.5390869379043579, mape_i:0.28872790932655334
+
+h57_sl168_pl96_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.586937427520752, mae:0.5652621388435364, mape_i:0.2978636622428894
+
+h57_sl168_pl168_TimeMixer_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.605863094329834, mae:0.5720352530479431, mape_i:0.2902716398239136
+
+h57_sl168_pl24_TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.4566362202167511, mae:0.4976462423801422, mape_i:0.2695081830024719
+
+h57_sl168_pl48_TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.501792848110199, mae:0.5228756666183472, mape_i:0.27321547269821167
+
+h57_sl168_pl96_TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5129298567771912, mae:0.5320418477058411, mape_i:0.277273952960968
+
+h57_sl168_pl168_TimesNet_custom_ftMS_ll0_dm32_nh8_el2_dl1_df32_fc3_ebtimeF_dtTrue_Exp_0  
+mse:0.5640008449554443, mae:0.5453993082046509, mape_i:0.2798480689525604
+
+h57_sl168_pl24_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM10.0_0  
+mse:0.43994203209877014, mae:0.48080533742904663, mape_i:0.2555965185165405
+
+h57_sl168_pl48_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM10.0_0  
+mse:0.47509467601776123, mae:0.4985523521900177, mape_i:0.25913646817207336
+
+h57_sl168_pl96_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM10.0_0  
+mse:0.49633875489234924, mae:0.5108797550201416, mape_i:0.26280784606933594
+
+h57_sl168_pl168_AMPTST_custom_ftMS_ll0_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_CM10.0_0  
+mse:0.5166271924972534, mae:0.5170000195503235, mape_i:0.27004295587539673
+
+h57_sl168_pl24_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_pw10.0_0  
+mse:0.4702659547328949, mae:0.5072100758552551, mape_i:0.2721644639968872
+
+h57_sl168_pl48_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_pw10.0_0  
+mse:0.4977871775627136, mae:0.5197516083717346, mape_i:0.27510178089141846
+
+h57_sl168_pl96_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_pw10.0_0  
+mse:0.5334332585334778, mae:0.5332739353179932, mape_i:0.2769905626773834
+
+h57_sl168_pl168_DLinear_custom_ftMS_ll48_dm512_nh8_el2_dl1_df2048_fc1_ebtimeF_dtTrue_pw10.0_0  
+mse:0.552699625492096, mae:0.5403733253479004, mape_i:0.27656885981559753
+
+h57_sl168_pl24_iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_pw10.0_0  
+mse:0.5322809219360352, mae:0.5402708649635315, mape_i:0.28541332483291626
+
+h57_sl168_pl48_iTransformer_custom_ftMS_ll48_dm32_nh8_el3_dl1_df32_fc3_ebtimeF_dtTrue_pw10.0_0  
+mse:0.5338663458824158, mae:0.534673810005188, mape_i:0.2762942910194397
+

@@ -1,7 +1,7 @@
 export CUDA_VISIBLE_DEVICES=0
 f=57
 model_name=PatchTST
-ps_lambdas=(2.0 6.0 10.0)
+ps_lambdas=(10.0)
 seq_len=168
 for pred_len in 24 48 96 168
 do
