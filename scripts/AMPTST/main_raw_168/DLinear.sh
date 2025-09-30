@@ -5,7 +5,7 @@ root_path=./dataset/mydata_v1/
 data_path=h57.csv
 model_id_name=h57
 data_name=custom
-
+des=Expv2
 for pred_len in 24 48 96 168
 do
     python -u run.py \
@@ -23,7 +23,7 @@ do
       --dropout 0.1\
       --train_epochs 20\
       --patience 10\
-      --des 'Exp' \
+      --des $des \
       --itr 1 \
       --learning_rate 0.01 \
       --ps_lambda 10.0 \

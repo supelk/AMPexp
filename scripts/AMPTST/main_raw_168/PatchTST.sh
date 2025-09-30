@@ -2,6 +2,7 @@ export CUDA_VISIBLE_DEVICES=0
 f=57
 model_name=PatchTST
 seq_len=168
+des=Expv2
 for pred_len in 24 48 96 168
 do
   python -u run.py \
@@ -27,7 +28,7 @@ do
     --c_out $f \
     --batch_size 16 \
     --learning_rate 0.01 \
-    --des 'Exp' \
+    --des $des \
     --itr 1 \
     --n_heads 4 \
     --ps_lambda 10.0 \

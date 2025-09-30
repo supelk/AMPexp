@@ -305,7 +305,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         if test_data.scale and self.args.inverse:
             preds_inverse = []
             trues_inverse = []
-        folder_path = './test_results/' + setting + '/' + self.result_path + '/'
+        folder_path = './test_resultsv2/' + setting + '/' + self.result_path + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -401,7 +401,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         mae_i, mse_i, rmse_i, mape_i, mspe_i, r2_i = metric(preds_inverse, trues_inverse)
         print('mse:{}, mae:{}, mape_i:{}'.format(mse, mae, mape_i))
         # f = open("result_long_term_forecast.txt", 'a')
-        f = open("result_v1.txt", 'a')
+        f = open("result_v2.txt", 'a')
         f.write(setting + "  \n")
         f.write('mse:{}, mae:{}, mape_i:{}'.format(mse, mae, mape_i))
         f.write('\n')

@@ -32,7 +32,7 @@ do
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --des pw$ps_lambda \
+      --des pwv2$ps_lambda \
       --batch_size 16 \
       --d_model 32 \
       --d_ff 32 \

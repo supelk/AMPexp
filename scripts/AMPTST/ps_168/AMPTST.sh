@@ -15,11 +15,11 @@ down_sampling_window=2
 learning_rate=0.01
 d_model=32
 d_ff=32
-train_epochs=20
-patience=10
+train_epochs=10
+patience=3
 f=57
 data_path=h57.csv
-des=CM
+des=CMv2
 for pred_len in 24 48 96 168
 do
   for ps_lambda in ${ps_lambdas[@]}

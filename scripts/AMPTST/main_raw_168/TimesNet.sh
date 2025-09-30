@@ -27,7 +27,7 @@ python -u run.py \
   --learning_rate 0.01 \
   --top_k 5 \
   --batch_size 16 \
-  --des 'Exp' \
+  --des 'Expv3' \
   --itr 1 \
   --ps_lambda 10.0 \
   --use_ps_loss 0 \

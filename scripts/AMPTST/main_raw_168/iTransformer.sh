@@ -9,6 +9,7 @@ fi
 f=57
 seq_len=168
 model_name=iTransformer
+des=Expv2
 for pred_len in 24 48 96 168
 do
 python  -u run.py \
@@ -29,7 +30,7 @@ python  -u run.py \
   --enc_in $f \
   --dec_in $f \
   --c_out $f \
-  --des 'Exp' \
+  --des $des \
   --batch_size 16 \
   --d_model 32 \
   --d_ff 32 \
