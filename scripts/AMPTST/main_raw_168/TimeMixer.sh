@@ -49,7 +49,7 @@ do
     --use_ps_loss 0
 done
 
-seq_len = 96
+pred_len = 96
 learning_rate = 0.0001
 python -u run.py \
   --task_name long_term_forecast \
