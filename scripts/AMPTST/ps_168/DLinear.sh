@@ -25,7 +25,7 @@ do
       --dropout 0.1\
       --train_epochs 20\
       --patience 10\
-      --des pwv2$ps_lambda \
+      --des pwd$ps_lambda \
       --itr 1 \
       --learning_rate 0.01 \
       --ps_lambda $ps_lambda \

@@ -19,7 +19,7 @@ train_epochs=20
 patience=10
 f=57
 data_path=h57.csv
-des=CMv2
+des=CM-D
 for pred_len in 24 48 96 168
 do
   python -u run.py \

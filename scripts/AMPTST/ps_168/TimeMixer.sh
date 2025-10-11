@@ -35,7 +35,7 @@ do
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --des pwv2$ps_lambda \
+      --des pwd$ps_lambda \
       --itr 1 \
       --d_model $d_model \
       --d_ff $d_ff \

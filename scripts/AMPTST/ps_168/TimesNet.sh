@@ -31,7 +31,7 @@ do
       --learning_rate 0.01 \
       --top_k 5 \
       --batch_size 16 \
-      --des pwv2$ps_lambda \
+      --des pwd$ps_lambda \
       --itr 1 \
       --ps_lambda $ps_lambda \
       --use_ps_loss 1 \

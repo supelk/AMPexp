@@ -30,7 +30,7 @@ do
       --c_out $f \
       --batch_size 16 \
       --learning_rate 0.01 \
-      --des pwv2$ps_lambda \
+      --des pwd$ps_lambda \
       --itr 1 \
       --n_heads 4 \
       --ps_lambda $ps_lambda \

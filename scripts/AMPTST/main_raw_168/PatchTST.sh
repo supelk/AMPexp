@@ -2,7 +2,7 @@ export CUDA_VISIBLE_DEVICES=0
 f=57
 model_name=PatchTST
 seq_len=168
-des=Expv2
+des=Exp-D
 for pred_len in 24 48 96 168
 do
   python -u run.py \

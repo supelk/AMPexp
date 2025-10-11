@@ -3,10 +3,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.fft
 from layers.Embed import Embedding_forAMPTST
-from layers.Transformer_EncDec import Encoder, EncoderLayer,ConvLayer
+from layers.Transformer_EncDec import Encoder, EncoderLayer
 from layers.Autoformer_EncDec import series_decomp
-from layers.SelfAttention_Family import AttentionLayer
-from layers.SelfAttention_Family import ProbAttention as FullAttention
+from layers.SelfAttention_Family import FullAttention, AttentionLayer
 from layers.StandardNorm import Normalize
 
 class Transpose(nn.Module):
@@ -65,11 +64,6 @@ class AMPTST(nn.Module):
                             activation=configs.activation
                         ) for l in range(self.layers)
                     ],
-                    [
-                        ConvLayer(
-                            configs.d_model
-                        ) for l in range(configs.e_layers - 1)
-                    ] if configs.distil and ('forecast' in configs.task_name) else None,
                     norm_layer=nn.Sequential(Transpose(1, 2), nn.BatchNorm1d(configs.d_model), Transpose(1, 2))
                 )
                 for _ in range(self.down_sampling_layers + 1)
@@ -89,11 +83,6 @@ class AMPTST(nn.Module):
                             activation=configs.activation
                         ) for l in range(self.layers)
                     ],
-                    [
-                        ConvLayer(
-                            configs.d_model
-                        ) for l in range(configs.e_layers - 1)
-                    ] if configs.distil and ('forecast' in configs.task_name) else None,
                     norm_layer=nn.Sequential(Transpose(1, 2), nn.BatchNorm1d(configs.d_model), Transpose(1, 2))
                 )
                 for _ in range(self.down_sampling_layers + 1)
@@ -105,7 +94,7 @@ class AMPTST(nn.Module):
         for i,x in enumerate(x_list):
             # print(f"input of AMPSTS.block {x.shape}")
             B, T, N = x.size()
-            period_list, period_weight = FFT_for_Period(x, self.k)
+            period_list, period_weight = FFT_for_Period(x, self.k)  # 自适应周期
             res = []
             # seasons =[]
             # trends =[]
@@ -123,15 +112,18 @@ class AMPTST(nn.Module):
                 block_in = block_in.reshape(B, length // period, period,N).permute(0, 3, 1, 2).contiguous()  # [B,dm,f,t]
 
                 block_in_p = block_in.permute(0, 2, 3, 1).contiguous()  # [B,f,t,dm], seasons
-                block_in_p = torch.reshape(block_in_p, (B * block_in_p.shape[1], -1, N))  # [B*f,t,dm]
-                block_out_p, _ = self.Multi_PTST_period[i](block_in_p)
-                block_season = block_out_p.reshape(B, -1, N)  # [B,f,t,dm] > [B,T,dm]
+                block_in_p = torch.reshape(block_in_p, (B * block_in_p.shape[1], -1, N)).permute(0,2,1).contiguous()  # [B*f,dm,t]
+                block_in_p = F.adaptive_max_pool1d(block_in_p, 1)  # [B*f,dm,1]
+                block_in_p = block_in_p.view(B,-1,N).contiguous()  # [B,f,dm]
+                block_out_p, _ = self.Multi_PTST_period[i](block_in_p)  # [B,f,dm]
+                block_season = block_out_p.unsqueeze(2)
                 block_in_f = block_in.permute(0, 3, 2, 1).contiguous()  # [B,t,f,dm], trends
-                block_in_f = torch.reshape(block_in_f, (
-                block_in_f.shape[0] * block_in_f.shape[1], block_in_f.shape[2], block_in_f.shape[3]))  # [B*t,f,dm]
+                block_in_f = torch.reshape(block_in_f, (B * block_in_f.shape[1], -1, N)).permute(0,2,1).contiguous()  # [B*t,dm,f]
+                block_in_f = F.adaptive_max_pool1d(block_in_f, 1)   # [B*t,dm,1]
+                block_in_f = block_in_f.view(B,-1,N).contiguous()   # [B,t,dm]
                 block_out_f, _ = self.Multi_PTST_frequency[i](block_in_f)
-                block_trend = block_out_f.reshape(B, -1, N)  # [B,f,t,dm] > [B,T,dm]
-                out = block_season + block_trend
+                block_trend = block_in_f.unsqueeze(1)
+                out = (block_season * block_trend).reshape(B, -1, N)
 
                 # seasons.append(block_season)
                 # trends.append(block_trend)
@@ -166,7 +158,6 @@ class Model(nn.Module):
         # self.model = nn.ModuleList(
         #     [AMPTST(configs) for _ in range(self.layers)]
         # )
-
         self.head_nf_list = []
         for i in range(configs.down_sampling_layers + 1):
             self.head_nf_list.append(
@@ -247,12 +238,12 @@ class Model(nn.Module):
                 x_list.append(x)
                 x_mark_list.append(x_mark)
         else:
-            for i, x in zip(range(len(x_enc)), x_enc, ):
+            for i, x in zip(range(len(x_enc)), x_enc, ):    # 对尺度序列进行投影
                 B, T, N = x.size()
                 x = self.normalize_layers[i](x, 'norm')
                 if self.channel_independence:
                     x = x.permute(0, 2, 1).contiguous().reshape(B * N, T, 1)
-                x = self.enc_embedding(x)  # [B*N,T,dm] or [B,T,dm]
+                x = self.enc_embedding(x)  # [B*N,T,dm] or [B,T,dm]   在特征维度上进行嵌入
                 x_list.append(x)  # [B*N,T,dm] or [B,T,dm]
         # print(f"len of x_list: {len(x_list)}")
         out_list = self.model(x_list)  # [B*N,T,dm] or [B,T,dm]

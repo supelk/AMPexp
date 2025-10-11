@@ -19,7 +19,6 @@ train_epochs=10
 patience=3
 f=57
 data_path=h57.csv
-des=CMv2
 for pred_len in 24 48 96 168
 do
   for ps_lambda in ${ps_lambdas[@]}
@@ -44,7 +43,7 @@ do
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --des CM$ps_lambda \
+      --des CMD$ps_lambda \
       --itr 1 \
       --d_model $d_model \
       --d_ff $d_ff \

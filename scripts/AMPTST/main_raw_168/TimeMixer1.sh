@@ -6,13 +6,14 @@ seq_len=168
 e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
-learning_rate=0.011
+learning_rate=0.0001
 d_model=32
 d_ff=32
 batch_size=16
 train_epochs=20
 patience=10
 f=57
+des=Exp-A
 for pred_len in 96
 do
   python -u run.py \
@@ -33,7 +34,7 @@ do
     --enc_in $f \
     --dec_in $f \
     --c_out $f \
-    --des 'Exp' \
+    --des $des \
     --itr 1 \
     --d_model $d_model \
     --d_ff $d_ff \

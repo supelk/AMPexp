@@ -9,7 +9,7 @@ fi
 f=57
 seq_len=168
 model_name=iTransformer
-des=Expv2
+des=Exp-D
 for pred_len in 24 48 96 168
 do
 python  -u run.py \

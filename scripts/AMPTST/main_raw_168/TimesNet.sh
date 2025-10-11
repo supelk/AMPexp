@@ -2,6 +2,7 @@ export CUDA_VISIBLE_DEVICES=0
 model_name=TimesNet
 f=57
 seq_len=168
+des=Exp-D
 for pred_len in 24 48 96 168
 do
 python -u run.py \
@@ -27,7 +28,7 @@ python -u run.py \
   --learning_rate 0.01 \
   --top_k 5 \
   --batch_size 16 \
-  --des 'Expv3' \
+  --des $des \
   --itr 1 \
   --ps_lambda 10.0 \
   --use_ps_loss 0 \

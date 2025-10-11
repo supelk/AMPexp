@@ -5,7 +5,7 @@ root_path=./dataset/mydata_v1/
 data_path=h57.csv
 model_id_name=h57
 data_name=custom
-des=Expv2
+des=Exp-D
 for pred_len in 24 48 96 168
 do
     python -u run.py \
