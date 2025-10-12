@@ -114,13 +114,13 @@ class AMPTST(nn.Module):
                 block_in_p = block_in.permute(0, 2, 3, 1).contiguous()  # [B,f,t,dm], seasons
                 block_in_p = torch.reshape(block_in_p, (B * block_in_p.shape[1], -1, N)).permute(0,2,1).contiguous()  # [B*f,dm,t]
                 block_in_p = F.adaptive_max_pool1d(block_in_p, 1)  # [B*f,dm,1]
-                block_in_p = block_in_p.view(B,-1,N).contiguous()  # [B,f,dm]
+                block_in_p = torch.reshape(block_in_p,(B,-1,N)).contiguous()  # [B,f,dm]
                 block_out_p, _ = self.Multi_PTST_period[i](block_in_p)  # [B,f,dm]
                 block_season = block_out_p.unsqueeze(2)
                 block_in_f = block_in.permute(0, 3, 2, 1).contiguous()  # [B,t,f,dm], trends
                 block_in_f = torch.reshape(block_in_f, (B * block_in_f.shape[1], -1, N)).permute(0,2,1).contiguous()  # [B*t,dm,f]
                 block_in_f = F.adaptive_max_pool1d(block_in_f, 1)   # [B*t,dm,1]
-                block_in_f = block_in_f.view(B,-1,N).contiguous()   # [B,t,dm]
+                block_in_f = torch.reshape(block_in_f,(B,-1,N)).contiguous()   # [B,t,dm]
                 block_out_f, _ = self.Multi_PTST_frequency[i](block_in_f)
                 block_trend = block_in_f.unsqueeze(1)
                 out = (block_season * block_trend).reshape(B, -1, N)

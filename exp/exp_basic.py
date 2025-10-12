@@ -42,8 +42,8 @@ class Exp_Basic(object):
             'MultiPatchFormer': MultiPatchFormer,
             'MPTST': MPTST,
             'AMPTST': AMPTST,
-            'AMPTST_v2': AMPTST_v2,
-            'AMPTST_CI': AMPTST_CI,
+            'AMPTST-v2': AMPTST_v2,
+            'AMPTST-CI': AMPTST_CI,
             'TSTDLSTM': TSTDLSTM
 
         }
