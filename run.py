@@ -148,6 +148,9 @@ if __name__ == '__main__':
 
     #  AMPTST
     parser.add_argument('--pf', type=int, default=0, help='0:use period and frequency; 1:only period; 2: only frequency')
+    # m1
+    parser.add_argument('--m1_type', type=str, default='only Linear', help='only Linear; with GELU.')
+
 
     # loss functions
     parser.add_argument('--ps_lambda', type=float, default=3.0, help='weight for ps_loss')
