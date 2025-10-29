@@ -187,7 +187,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         vali_data, vali_loader = self._get_data(flag='val')
         test_data, test_loader = self._get_data(flag='test')
 
-        path = os.path.join(self.args.checkpoints, setting)
+        path = os.path.join(self.args.checkpoints, self.result_path + '/' + setting)
         if not os.path.exists(path):
             os.makedirs(path)
 
@@ -283,14 +283,14 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         test_data, test_loader = self._get_data(flag='test')
         if test:
             print('loading model')
-            self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
+            self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + self.result_path + '/' + setting, 'checkpoint.pth')))
 
         preds = []
         trues = []
         if test_data.scale and self.args.inverse:
             preds_inverse = []
             trues_inverse = []
-        folder_path = './test_resultsv2/' + setting + '/' + self.result_path + '/'
+        folder_path = './test_results_v3/' + self.result_path + '/' + setting
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -320,10 +320,13 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 batch_y = batch_y.detach().cpu().numpy()
                 if test_data.scale and self.args.inverse:
                     shape = batch_y.shape
+                    B,L,N = outputs.shape
+                    # print(B,L,N)
                     if outputs.shape[-1] != batch_y.shape[-1]:
                         outputs = np.tile(outputs, [1, 1, int(batch_y.shape[-1] / outputs.shape[-1])])
-                    outputs_inverse = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
-                    batch_y_inverse = test_data.inverse_transform(batch_y.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                    # outputs_inverse = test_data.inverse_transform(outputs.reshape(shape[0] * shape[1], -1)).reshape(shape)
+                    outputs_inverse = test_data.inverse_transform(outputs.reshape(-1,N)).reshape(shape)
+                    batch_y_inverse = test_data.inverse_transform(batch_y.reshape(-1,N)).reshape(shape)
                     outputs_inverse = outputs_inverse[:, :, f_dim:]
                     batch_y_inverse = batch_y_inverse[:, :, f_dim:]
                     pi = outputs_inverse
@@ -363,7 +366,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         print('test shape:', preds.shape, trues.shape)
 
         # result save
-        folder_path = './results/' + setting + '/'
+        folder_path = './results/' + self.result_path + '/' + setting + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -384,11 +387,11 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
         mae, mse, rmse, mape, mspe, r2 = metric(preds, trues)
         mae_i, mse_i, rmse_i, mape_i, mspe_i, r2_i = metric(preds_inverse, trues_inverse)
-        print('mse:{}, mae:{}, mape_i:{}'.format(mse, mae, mape_i))
+        print('mse:{}, mae:{}, mape_i:{},r2:{},r2_i:{}'.format(mse, mae, mape_i,r2,r2_i))
         # f = open("result_long_term_forecast.txt", 'a')
-        f = open("result_v2.txt", 'a')
+        f = open("result_v3.txt", 'a')
         f.write(setting + "  \n")
-        f.write('mse:{}, mae:{}, mape_i:{}'.format(mse, mae, mape_i))
+        f.write('mse:{}, mae:{}, mape_i:{},r2:{},r2_i:{}'.format(mse, mae, mape_i,r2,r2_i))
         f.write('\n')
         f.write('\n')
         f.close()
@@ -398,3 +401,4 @@ class Exp_Long_Term_Forecast(Exp_Basic):
             np.save(folder_path + 'pred.npy', preds_inverse)
             np.save(folder_path + 'true.npy', trues_inverse)
         return
+

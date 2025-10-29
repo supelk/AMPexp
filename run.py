@@ -46,7 +46,7 @@ if __name__ == '__main__':
     parser.add_argument('--label_len', type=int, default=48, help='start token length')
     parser.add_argument('--pred_len', type=int, default=96, help='prediction sequence length')
     parser.add_argument('--seasonal_patterns', type=str, default='Monthly', help='subset for M4')
-    parser.add_argument('--inverse', type=bool, help='inverse output data,', default=1)
+    parser.add_argument('--inverse', type=bool, default=1, help='inverse output data,')
     # storage result
     parser.add_argument('--storage_result', default=False, action="store_true",
                         help="storage result")
@@ -60,9 +60,11 @@ if __name__ == '__main__':
     # model define
     parser.add_argument('--expand', type=int, default=2, help='expansion factor for Mamba')
     parser.add_argument('--d_conv', type=int, default=4, help='conv kernel size for Mamba')
+
     parser.add_argument('--top_k', type=int, default=5, help='for TimesBlock')
     parser.add_argument('--num_kernels', type=int, default=6, help='for Inception')
-    parser.add_argument('--enc_in', type=int, default=7, help='encoder input size')
+
+    parser.add_argument('--enc_in', type=int, default=33, help='encoder input size')
     parser.add_argument('--dec_in', type=int, default=7, help='decoder input size')
     parser.add_argument('--c_out', type=int, default=7, help='output size')
     parser.add_argument('--d_model', type=int, default=512, help='dimension of model')
@@ -94,10 +96,10 @@ if __name__ == '__main__':
     # optimization
     parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')
     parser.add_argument('--itr', type=int, default=1, help='experiments times')
-    parser.add_argument('--train_epochs', type=int, default=20, help='train epochs')
-    parser.add_argument('--batch_size', type=int, default=16, help='batch size of train input data')
-    parser.add_argument('--patience', type=int, default=10, help='early stopping patience')
-    parser.add_argument('--learning_rate', type=float, default=0.0001, help='optimizer learning rate')
+    parser.add_argument('--train_epochs', type=int, default=50, help='train epochs')
+    parser.add_argument('--batch_size', type=int, default=64, help='batch size of train input data')
+    parser.add_argument('--patience', type=int, default=20, help='early stopping patience')
+    parser.add_argument('--learning_rate', type=float, default=0.01, help='optimizer learning rate')
     parser.add_argument('--des', type=str, default='test', help='exp description')
     parser.add_argument('--loss', type=str, default='MSE', help='loss function')
     parser.add_argument('--lradj', type=str, default='type1', help='adjust learning rate')
@@ -121,7 +123,7 @@ if __name__ == '__main__':
 
     # Augmentation
     parser.add_argument('--augmentation_ratio', type=int, default=0, help="How many times to augment")
-    parser.add_argument('--seed', type=int, default=2, help="Randomization seed")
+    parser.add_argument('--seed', type=int, default=2025, help="Randomization seed")
     parser.add_argument('--jitter', default=False, action="store_true", help="Jitter preset augmentation")
     parser.add_argument('--scaling', default=False, action="store_true", help="Scaling preset augmentation")
     parser.add_argument('--permutation', default=False, action="store_true",
@@ -149,7 +151,7 @@ if __name__ == '__main__':
     #  AMPTST
     parser.add_argument('--pf', type=int, default=0, help='0:use period and frequency; 1:only period; 2: only frequency')
     # m1
-    parser.add_argument('--m1_type', type=str, default='only Linear', help='only Linear; with GELU.')
+    parser.add_argument('--m1_type', type=int, default=0, help='0:only Linear; 1:with GELU; 2:Patch')
 
 
     # loss functions
@@ -164,7 +166,7 @@ if __name__ == '__main__':
     parser.add_argument('--individual', type=bool, default=False, help='individual or not for lstm ')
 
     #result folder
-    parser.add_argument('--result_path', type=str, default='A1', help='result show path')
+    parser.add_argument('--result_path', type=str, default='try', help='sub-direction of visual, result, and checkpoint.pth')
     args = parser.parse_args()
     if torch.cuda.is_available() and args.use_gpu:
         args.device = torch.device('cuda:{}'.format(args.gpu))
@@ -206,7 +208,7 @@ if __name__ == '__main__':
         for ii in range(args.itr):
             # setting record of experiments
             exp = Exp(args)  # set experiments
-            setting = '{}_sl{}_pl{}_{}_{}_ft{}_ll{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}_dt{}_{}_{}'.format(
+            setting = '{}_sl{}_pl{}_{}_{}_ft{}_ll{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}_dt{}_bs{}_lr{}_{}_{}'.format(
                 args.model_id,
                 args.seq_len,
                 args.pred_len,
@@ -222,6 +224,8 @@ if __name__ == '__main__':
                 args.factor,
                 args.embed,
                 args.distil,
+                args.batch_size,
+                args.learning_rate,
                 args.des, ii)
 
             print('>>>>>>>start training : {}>>>>>>>>>>>>>>>>>>>>>>>>>>'.format(setting))
@@ -236,7 +240,7 @@ if __name__ == '__main__':
     else:
         exp = Exp(args)  # set experiments
         ii = 0
-        setting = '{}_sl{}_pl{}__{}_{}_ft{}_ll{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}_dt{}_{}_{}'.format(
+        setting = '{}_sl{}_pl{}_{}_{}_ft{}_ll{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}_dt{}_bs{}_lr{}_{}_{}'.format(
             args.model_id,
             args.seq_len,
             args.pred_len,
@@ -252,6 +256,8 @@ if __name__ == '__main__':
             args.factor,
             args.embed,
             args.distil,
+            args.batch_size,
+            args.learning_rate,
             args.des, ii)
 
         print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
