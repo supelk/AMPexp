@@ -1,9 +1,9 @@
 seq_len=168
 model_name=DLinear
-ps_lambdas=(10.0)
+ps_lambdas=(2.0 6.0 10.0)
 root_path=./dataset/mydata_v1/
-data_path=h57.csv
-model_id_name=h57
+data_path=h33.csv
+model_id_name=h33
 data_name=custom
 
 for pred_len in 24 48 96 168
@@ -21,13 +21,10 @@ do
       --features MS \
       --seq_len $seq_len \
       --pred_len $pred_len \
-      --enc_in 57\
+      --enc_in 33\
       --dropout 0.1\
-      --train_epochs 20\
-      --patience 10\
-      --des pwd$ps_lambda \
+      --des Exp$ps_lambda \
       --itr 1 \
-      --learning_rate 0.01 \
       --ps_lambda $ps_lambda \
       --use_ps_loss 1
   done

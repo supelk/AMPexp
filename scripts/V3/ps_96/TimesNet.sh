@@ -1,7 +1,7 @@
 export CUDA_VISIBLE_DEVICES=0
 model_name=TimesNet
 ps_lambdas=(2.0 6.0 10.0)
-f=57
+f=33
 seq_len=96
 for pred_len in 24 48 96 168
 do
@@ -11,8 +11,8 @@ do
       --task_name long_term_forecast \
       --is_training 1 \
       --root_path ./dataset/mydata_v1/ \
-      --data_path h57.csv \
-      --model_id h57 \
+      --data_path h33.csv \
+      --model_id h33 \
       --model $model_name \
       --data custom \
       --features MS \
@@ -27,10 +27,8 @@ do
       --c_out $f \
       --d_model 32 \
       --d_ff 32 \
-      --learning_rate 0.01 \
       --top_k 5 \
-      --batch_size 16 \
-      --des pw$ps_lambda \
+      --des Exp$ps_lambda \
       --itr 1 \
       --ps_lambda $ps_lambda \
       --use_ps_loss 1 \

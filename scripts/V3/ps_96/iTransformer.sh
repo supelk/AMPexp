@@ -6,7 +6,7 @@ fi
 if [ ! -d "./logs/othermodel" ]; then
     mkdir ./logs/othermodel
 fi
-f=57
+f=33
 seq_len=96
 model_name=iTransformer
 ps_lambdas=(2.0 6.0 10.0)
@@ -18,8 +18,8 @@ do
       --task_name long_term_forecast \
       --is_training 1 \
       --root_path ./dataset/mydata_v1/ \
-      --data_path h57.csv \
-      --model_id h57 \
+      --data_path h33.csv \
+      --model_id h33 \
       --model $model_name \
       --data custom \
       --features MS \
@@ -32,11 +32,9 @@ do
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --des pw$ps_lambda \
-      --batch_size 16 \
+      --des Exp$ps_lambda \
       --d_model 32 \
       --d_ff 32 \
-      --learning_rate 0.01 \
       --itr 1 \
       --ps_lambda $ps_lambda \
       --use_ps_loss 1 \

@@ -6,13 +6,12 @@ seq_len=96
 e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
-learning_rate=0.01
 d_model=32
 d_ff=32
 batch_size=16
 train_epochs=20
 patience=10
-f=57
+f=33
 for pred_len in 24 48 96 168
 do
   for ps_lambda in ${ps_lambdas[@]}
@@ -21,8 +20,8 @@ do
       --task_name long_term_forecast \
       --is_training 1 \
       --root_path ./dataset/mydata_v1/ \
-      --data_path h57.csv \
-      --model_id h57 \
+      --data_path h33.csv \
+      --model_id h33 \
       --model $model_name \
       --data custom \
       --features MS \
@@ -35,14 +34,10 @@ do
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --des pw$ps_lambda \
+      --des Exp$ps_lambda \
       --itr 1 \
       --d_model $d_model \
       --d_ff $d_ff \
-      --batch_size 16 \
-      --learning_rate $learning_rate \
-      --train_epochs $train_epochs \
-      --patience $patience \
       --down_sampling_layers $down_sampling_layers \
       --down_sampling_method avg \
       --down_sampling_window $down_sampling_window \

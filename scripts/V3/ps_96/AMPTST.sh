@@ -12,14 +12,11 @@ seq_len=96
 e_layers=3
 down_sampling_layers=3
 down_sampling_window=2
-learning_rate=0.01
 d_model=32
 d_ff=32
-train_epochs=20
-patience=10
-f=57
-data_path=h57.csv
-des=CM-D
+f=33
+data_path=h33.csv
+
 for pred_len in 24 48 96 168
 do
   for ps_lambda in ${ps_lambdas[@]}
@@ -29,7 +26,7 @@ do
       --is_training 1 \
       --root_path ./dataset/mydata_v1/ \
       --data_path $data_path \
-      --model_id h57 \
+      --model_id h33 \
       --model $model_name \
       --data custom \
       --features MS \
@@ -44,15 +41,10 @@ do
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --des CMD$ps_lambda \
+      --des Exp$ps_lambda \
       --itr 1 \
       --d_model $d_model \
       --d_ff $d_ff \
-      --moving_avg 25 \
-      --batch_size 16 \
-      --learning_rate $learning_rate \
-      --train_epochs $train_epochs \
-      --patience $patience \
       --channel_independence 0 \
       --down_sampling_layers $down_sampling_layers \
       --down_sampling_method avg \

@@ -1,5 +1,5 @@
 export CUDA_VISIBLE_DEVICES=0
-f=57
+f=33
 model_name=PatchTST
 ps_lambdas=(2.0 6.0 10.0)
 seq_len=96
@@ -11,8 +11,8 @@ do
       --task_name long_term_forecast \
       --is_training 1 \
       --root_path ./dataset/mydata_v1/ \
-      --data_path h57.csv \
-      --model_id h57 \
+      --data_path h33.csv \
+      --model_id h33 \
       --model $model_name \
       --data custom \
       --features MS \
@@ -24,13 +24,10 @@ do
       --e_layers 2 \
       --d_layers 1 \
       --factor 3 \
-      --patience 10 \
       --enc_in $f \
       --dec_in $f \
       --c_out $f \
-      --batch_size 16 \
-      --learning_rate 0.01 \
-      --des pw$ps_lambda \
+      --des Exp$ps_lambda \
       --itr 1 \
       --n_heads 4 \
       --ps_lambda $ps_lambda \
